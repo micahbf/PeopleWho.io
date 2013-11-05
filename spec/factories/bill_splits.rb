@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :bill_split do
-    bill_id 1
+    association :bill
     association :debtor, factory: user
     paid false
     amount 1
