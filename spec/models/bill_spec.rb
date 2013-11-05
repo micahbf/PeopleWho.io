@@ -16,5 +16,19 @@ describe Bill do
       bill.total = bill
       expect(bill).not_to be_valid
     end
+
+    it "sum of bill splits should be <= total" do
+      bill.bill_splits.build([{
+        amount: 7500,
+        debtor_id: 1,
+        paid: false
+        }, {
+        amount: 7500,
+        debtor_id: 2,
+        paid: false
+      }])
+
+      expect(bill).not_to be_valid
+    end
   end
 end
