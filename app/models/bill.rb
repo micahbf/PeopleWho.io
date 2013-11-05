@@ -37,7 +37,9 @@ class Bill < ActiveRecord::Base
   end
 
   def bill_splits_sum_less_than_total
-    if (!bill_splits.empty? && bill_splits.sum(:amount) > total)
+    split_sum = bill_splits.map { |bs| bs.amount }.reduce(:+)
+
+    if (!bill_splits.empty? && split_sum > total)
       errors[:total] << "must be greater than the sum of the splits"
     end
   end
