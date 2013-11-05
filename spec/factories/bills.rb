@@ -3,11 +3,10 @@
 FactoryGirl.define do
   factory :bill do
     total 10000
-    description "MyString"
-    association :owner, factory: :user
-
-    after(:create) do |bill|
-      FactoryGirl.create_list(:bill_split, 2, bill: bill, amount: 3333)
+    sequence :description do
+      ["Drinks", "Dinner", "Gas", "Tickets"].sample
     end
+
+    association :owner, factory: :user
   end
 end
