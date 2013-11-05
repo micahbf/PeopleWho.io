@@ -15,6 +15,6 @@ class BillSplit < ActiveRecord::Base
   end
 
   def decimal_amount= (decimal)
-    amount = (decimal * 100).floor
+    amount = (decimal.to_f * 100).floor
   end
 end
