@@ -16,46 +16,46 @@
 
   <label for="bill_description">For: </label>
   <input type="text"
-         name="bill_description"
-         id="bill[description]"
+         id="bill_description"
+         name="bill[description]"
          value="<%= bill.description %>"
          placeholder="Dinner">
   <label for="bill_total">Total: $</label>
   <input type="text"
-         name="bill_total"
-         id="bill[decimal_total]"
+         id="bill_total"
+         name="bill[decimal_total]"
          value="<%= bill.decimal_total %>"
          placeholder="20.00"><br>
 
   Split with:<br>
   <label for="bill_split_0_debtor_id">ID: </label>
   <input type="text"
-         name="bill_split_0_debtor_id"
-         id="bill[bill_splits][0][debtor_id]">
+         id="bill_split_0_debtor_id"
+         name="bill[bill_splits][0][debtor_id]">
 
   $<input type="text"
-         name="bill_split_0_amount"
-         id="bill[bill_splits][0][decimal_amount]"
+         id="bill_split_0_amount"
+         name="bill[bill_splits][0][decimal_amount]"
          placeholder="10.00"><br>
 
   <label for="bill_split_1_debtor_id">ID: </label>
   <input type="text"
-         name="bill_split_1_debtor_id"
-         id="bill[bill_splits][1][debtor_id]">
+         id="bill_split_1_debtor_id"
+         name="bill[bill_splits][1][debtor_id]">
 
   $<input type="text"
-         name="bill_split_1_amount"
-         id="bill[bill_splits][1][decimal_amount]"
+         id="bill_split_1_amount"
+         name="bill[bill_splits][1][decimal_amount]"
          placeholder="10.00"><br>
 
   <label for="bill_split_2_debtor_id">ID: </label>
   <input type="text"
-         name="bill_split_2_debtor_id"
-         id="bill[bill_splits][2][debtor_id]">
+         id="bill_split_2_debtor_id"
+         name="bill[bill_splits][2][debtor_id]">
 
   $<input type="text"
-         name="bill_split_2_amount"
-         id="bill[bill_splits][2][decimal_amount]"
+         id="bill_split_2_amount"
+         name="bill[bill_splits][2][decimal_amount]"
          placeholder="10.00"><br>
 
   <input type="submit"
