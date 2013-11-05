@@ -1,0 +1,49 @@
+<% action_url = (action == :new) ? bills_url : bill_url(bill) %>
+<% submit_val = (action == :new) ? "Split!" : "Edit Bill" %>
+
+<form action="<%= action_url %>" method="post">
+  <label for="bill_description">For: </label>
+  <input type="text"
+         name="bill_description"
+         value="<%= bill.description %>"
+         placeholder="Dinner">
+  <label for="bill_total">Total: $</label>
+  <input type="text"
+         name="bill_total"
+         value="<%= bill.decimal_total %>"
+         placeholder="20.00"><br>
+
+  Split with:<br>
+  <label for="bill_split_0_debtor_id">ID: </label>
+  <input type="text"
+         name="bill_split_0_debtor_id"
+         id="bill[bill_splits][0][debtor_id]">
+
+  $<input type="text"
+         name="bill_split_0_amount"
+         id="bill[bill_splits][0][amount]"
+         placeholder="10.00"><br>
+
+  <label for="bill_split_1_debtor_id">ID: </label>
+  <input type="text"
+         name="bill_split_1_debtor_id"
+         id="bill[bill_splits][1][debtor_id]">
+
+  $<input type="text"
+         name="bill_split_1_amount"
+         id="bill[bill_splits][1][amount]"
+         placeholder="10.00"><br>
+
+  <label for="bill_split_2_debtor_id">ID: </label>
+  <input type="text"
+         name="bill_split_2_debtor_id"
+         id="bill[bill_splits][2][debtor_id]">
+
+  $<input type="text"
+         name="bill_split_2_amount"
+         id="bill[bill_splits][2][amount]"
+         placeholder="10.00"><br>
+
+  <input type="submit"
+         value="<%= submit_val %>">
+</form>
