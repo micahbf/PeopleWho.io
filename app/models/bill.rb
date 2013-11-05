@@ -19,7 +19,7 @@ class Bill < ActiveRecord::Base
   end
 
   def decimal_total= (decimal)
-    total = (decimal.to_f * 100).floor
+    self.total = (decimal.to_f * 100).floor
   end
 
   private
