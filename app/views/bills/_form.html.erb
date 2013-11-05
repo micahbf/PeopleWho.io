@@ -8,7 +8,7 @@
        type="hidden"
        value="put">
   <% end %>
-  
+
   <input
      name="authenticity_token"
      type="hidden"
@@ -17,11 +17,13 @@
   <label for="bill_description">For: </label>
   <input type="text"
          name="bill_description"
+         id="bill[description]"
          value="<%= bill.description %>"
          placeholder="Dinner">
   <label for="bill_total">Total: $</label>
   <input type="text"
          name="bill_total"
+         id="bill[decimal_total]"
          value="<%= bill.decimal_total %>"
          placeholder="20.00"><br>
 
@@ -33,7 +35,7 @@
 
   $<input type="text"
          name="bill_split_0_amount"
-         id="bill[bill_splits][0][amount]"
+         id="bill[bill_splits][0][decimal_amount]"
          placeholder="10.00"><br>
 
   <label for="bill_split_1_debtor_id">ID: </label>
@@ -43,7 +45,7 @@
 
   $<input type="text"
          name="bill_split_1_amount"
-         id="bill[bill_splits][1][amount]"
+         id="bill[bill_splits][1][decimal_amount]"
          placeholder="10.00"><br>
 
   <label for="bill_split_2_debtor_id">ID: </label>
@@ -53,7 +55,7 @@
 
   $<input type="text"
          name="bill_split_2_amount"
-         id="bill[bill_splits][2][amount]"
+         id="bill[bill_splits][2][decimal_amount]"
          placeholder="10.00"><br>
 
   <input type="submit"
