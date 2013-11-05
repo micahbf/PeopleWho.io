@@ -1,5 +1,5 @@
 class Bill < ActiveRecord::Base
-  attr_accessible :description, :owner_id, :total, :decimal_total
+  attr_accessible :description, :owner_id, :total, :decimal_total, :bill_splits
 
   validates :owner, :total, presence: true
   validate :total_greater_than_num_bill_splits
@@ -19,7 +19,7 @@ class Bill < ActiveRecord::Base
   end
 
   def decimal_total= (decimal)
-    total = (decimal * 100).floor
+    total = (decimal.to_f * 100).floor
   end
 
   private
