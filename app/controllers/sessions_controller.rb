@@ -12,11 +12,12 @@ class SessionsController < ApplicationController
       params[:user][:password]
     )
 
-    if user.nil?
-      render :json => "Invalid email/password"
-    else
+    if user
       self.current_user = user
       redirect_to user_url(user)
+    else
+      flash.now[:errors] = "Invalid email/password"
+      render :new
     end
   end
 
