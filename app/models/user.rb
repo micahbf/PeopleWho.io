@@ -4,4 +4,5 @@ class User < ActiveRecord::Base
 
   validates :email, presence: true, uniqueness: true
   validates :password, length: { minimum: 6 }, allow_nil: true
+  validates :password, presence: true, on: :create
 end
