@@ -2,8 +2,12 @@
 
 FactoryGirl.define do
   factory :bill do
-    owner_id 1
-    total 1
+    total 10000
     description "MyString"
+    association :owner, factory: :user
+
+    after(:create) do |bill|
+      FactoryGirl.create_list(:bill_split, 2, bill: bill, amount: 3333)
+    end
   end
 end
