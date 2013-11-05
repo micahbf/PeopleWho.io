@@ -10,6 +10,14 @@ class Bill < ActiveRecord::Base
   has_many :bill_splits, inverse_of: :bill
   accepts_nested_attributes_for :bill_splits
 
+  def decimal_total
+    if total
+      return (total / 100).round(2)
+    else
+      return nil
+    end
+  end
+
   private
 
   def total_greater_than_num_bill_splits
