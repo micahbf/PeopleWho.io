@@ -6,6 +6,8 @@ class BillsController < ApplicationController
 
   def create
     @bill = Bill.new(params[:bill])
+    @bill.owner_id = current_user.id
+    
     if @bill.save
       flash[:notices] = "Bill saved."
       redirect_to :index
