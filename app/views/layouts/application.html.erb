@@ -7,6 +7,13 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<% if !current_user.nil? %>
+  <ul>
+    <li>Logged in as: <%= current_user.email %></li>
+    <li><%= button_to "Logout", session_url, :method => :delete %></li>
+  </ul>
+<% end %>
+
 <% if flash[:errors] || flash[:notices] %>
   <ul>
   <% flash.each do |name, msg| %>
