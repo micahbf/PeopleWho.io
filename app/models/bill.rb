@@ -7,7 +7,7 @@ class Bill < ActiveRecord::Base
 
   belongs_to :owner, class_name: "User"
 
-  has_many :bill_splits
+  has_many :bill_splits, inverse_of: :bill
   accepts_nested_attributes_for :bill_splits
 
   private
