@@ -8,6 +8,7 @@ class Bill < ActiveRecord::Base
   belongs_to :owner, class_name: "User"
 
   has_many :bill_splits
+  accepts_nested_attributes_for :bill_splits
 
   private
 
