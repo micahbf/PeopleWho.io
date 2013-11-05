@@ -16,10 +16,5 @@ describe Bill do
       bill.total = bill
       expect(bill).not_to be_valid
     end
-
-    its "should have a total > the number of bill_splits" do
-      bill.total = 1
-      expect(bill).not_to be_valid
-    end
   end
 end
