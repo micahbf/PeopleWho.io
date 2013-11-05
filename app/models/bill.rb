@@ -18,6 +18,10 @@ class Bill < ActiveRecord::Base
     end
   end
 
+  def decimal_total= (decimal)
+    total = (decimal * 100).floor
+  end
+
   private
 
   def total_greater_than_num_bill_splits
