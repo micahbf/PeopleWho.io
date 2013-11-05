@@ -17,11 +17,6 @@ describe Bill do
       expect(bill).not_to be_valid
     end
 
-    it "must have at least one bill_split" do
-      bill.bill_splits = []
-      expect(bill).not_to be_valid
-    end
-
     its "should have a total > the number of bill_splits" do
       bill.total = 1
       expect(bill).not_to be_valid
