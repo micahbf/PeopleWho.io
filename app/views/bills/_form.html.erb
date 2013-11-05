@@ -2,6 +2,18 @@
 <% submit_val = (action == :new) ? "Split!" : "Edit Bill" %>
 
 <form action="<%= action_url %>" method="post">
+  <% if action == :edit %>
+    <input
+       name="_method"
+       type="hidden"
+       value="put">
+  <% end %>
+  
+  <input
+     name="authenticity_token"
+     type="hidden"
+     value="<%= form_authenticity_token %>">
+
   <label for="bill_description">For: </label>
   <input type="text"
          name="bill_description"
