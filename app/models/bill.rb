@@ -22,6 +22,10 @@ class Bill < ActiveRecord::Base
     self.total = (decimal.to_f * 100).floor
   end
 
+  def bill_split_sum
+    bill_splits.map { |bs| bs.amount }.reduce(:+)
+  end
+
   private
 
   def total_greater_than_num_bill_splits
@@ -31,9 +35,7 @@ class Bill < ActiveRecord::Base
   end
 
   def bill_splits_sum_less_than_total
-    split_sum = bill_splits.map { |bs| bs.amount }.reduce(:+)
-
-    if (!bill_splits.empty? && split_sum > total)
+    if (!bill_splits.empty? && bill_split_sum > total)
       errors[:total] << "must be greater than the sum of the splits"
     end
   end
