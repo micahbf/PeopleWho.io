@@ -27,8 +27,11 @@ class BillsController < ApplicationController
   end
 
   def index
+    redirect_to user_url(current_user)
   end
 
   def show
+    @bill = Bill.find(params[:id]).includes(bill_splits: :debtors)
+    render :show
   end
 end
