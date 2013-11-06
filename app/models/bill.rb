@@ -1,11 +1,20 @@
 class Bill < ActiveRecord::Base
-  attr_accessible :description, :owner_id, :total, :decimal_total, :bill_splits_attributes
+  attr_accessible :description,
+                  :owner_id,
+                  :total,
+                  :decimal_total,
+                  :bill_splits_attributes,
+                  :settling
 
-  validates :owner, :total, :description, presence: true
+  before_validation :default_settling_to_false
+
+  validates :owner, :total, :settling, presence: true
   validates :total, numericality: { only_integer: true }
   validates :decimal_total, numericality: true, allow_blank: true
+  validate :presence_of_description_unless_settling
   validate :total_greater_than_num_bill_splits
   validate :bill_splits_sum_less_than_total
+  validate :settling_has_exactly_one_split
 
   belongs_to :owner, class_name: "User"
 
@@ -44,5 +53,21 @@ class Bill < ActiveRecord::Base
     if (!bill_splits.empty? && bill_split_sum > total)
       errors[:total] << "must be greater than the sum of the splits"
     end
+  end
+
+  def presence_of_description_unless_settling
+    if (!settling && description.blank?)
+      errors[:description] << "can't be blank"
+    end
+  end
+
+  def settling_has_exactly_one_split
+    if(settling && bill_splits.count != 1)
+      errors[:bill_splits] << "must have exactly one split to settle"
+    end
+  end
+
+  def default_settling_to_false
+    settling ||= false
   end
 end
