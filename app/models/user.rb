@@ -24,6 +24,10 @@ class User < ActiveRecord::Base
     self.save!
   end
 
+  def display_name
+    self.name || self.email
+  end
+
   def users_with_outstanding_balance
     debits = self.debt_splits.includes(:bill)
     credits = self.paid_bills.includes(:bill_splits)
