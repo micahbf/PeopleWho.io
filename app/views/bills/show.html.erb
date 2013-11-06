@@ -14,6 +14,6 @@
   <% end %>
   <tr>
     <td>Your share</td>
-    <td>$<%= @bill.split_remainder %></td>
+    <td>$<%= Utilities::int_to_decimal(@bill.split_remainder) %></td>
   </tr>
 </table>
