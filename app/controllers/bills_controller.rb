@@ -17,15 +17,6 @@ class BillsController < ApplicationController
     end
   end
 
-  def edit
-  end
-
-  def update
-  end
-
-  def destroy
-  end
-
   def index
     redirect_to user_url(current_user)
   end
