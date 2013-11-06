@@ -1,0 +1,22 @@
+<h1><%= @user.name || @user.email %></h1>
+
+<h3>
+  <% case @balance <=> 0 %>
+  <% when -1 %>
+    You owe $<%= Utilities::int_to_decimal(@balance) %>
+  <% when 0 %>
+    You're even steven!
+  <% when 1 %>
+    They owe you $<%= Utilities::int_to_decimal(@balance) %>
+  <% end %>
+</h3>
+
+<table>
+  <% @splits.each do |split| %>
+    <tr>
+      <td><%= split.bill.created_at.strftime("%-d.%b.%y") %></td>
+      <td><%= split.bill.description %></td>
+      <td><%= "-" if split.debtor_id == current_user.id %>$<%= split.decimal_amount %></td>
+    </tr>
+  <% end %>
+</table>
