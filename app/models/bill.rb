@@ -10,12 +10,6 @@ class Bill < ActiveRecord::Base
   has_many :bill_splits, inverse_of: :bill
   accepts_nested_attributes_for :bill_splits
 
-  scope :unsettled, -> { includes(:bill_splits)
-                          .group("bill.id")
-                          .where("bill_splits.paid = false")
-                          .having("count(bill_splits.id) > 0")
-                       }
-
   def decimal_total
     if total
       return (total / 100).round(2)
