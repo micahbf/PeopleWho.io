@@ -7,13 +7,18 @@
 <h3>Split with:</h3>
 <table>
   <% @bill.bill_splits.each do |split| %>
+    <% user = (split.debtor == current_user) ? "You" : split.debtor.name || split.debtor.email %>
     <tr>
-      <td><%= split.debtor.name || split.debtor.email %></td>
+      <td><%= user %></td>
       <td>$<%= split.decimal_amount %></td>
     </tr>
   <% end %>
   <tr>
-    <td>Your share</td>
+    <% if @bill.owner_id == current_user.id %>
+      <td>Your share</td>
+    <% else %>
+      <td>Payer's share</td>
+    <% end %>
     <td>$<%= Utilities::int_to_decimal(@bill.split_remainder) %></td>
   </tr>
 </table>
