@@ -65,11 +65,11 @@ class User < ActiveRecord::Base
   end
 
   def splits_with(other_user)
-    debits = self.debt_splits.joins(:bill)
+    debits = self.debt_splits.includes(:bill)
                              .where("bills.owner_id" => other_user.id)
                              .all
 
-    credits = BillSplit.joins(:bill)
+    credits = BillSplit.includes(:bill)
                        .where("bill_splits.debtor_id" => other_user.id)
                        .where("bills.owner_id" => self.id)
                        .all
