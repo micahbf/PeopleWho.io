@@ -62,6 +62,19 @@ class User < ActiveRecord::Base
     credit - debt
   end
 
+  def splits_with(other_user)
+    debits = self.debt_splits.joins(:bill)
+                             .where("bills.owner_id" => other_user.id)
+                             .all
+
+    credits = BillSplit.joins(:bill)
+                       .where("bill_splits.debtor_id" => other_user.id)
+                       .where("bills.owner_id" => self.id)
+                       .all
+
+    debits.concat(credits).sort { |a, b| b.created_at <=> a.created_at }
+  end
+
   private
 
   def ensure_session_token
