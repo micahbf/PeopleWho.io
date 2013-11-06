@@ -15,4 +15,14 @@ class UsersController < ApplicationController
       render :new
     end
   end
+
+  def show
+    if params[:id] = current_user.id
+      @user = current_user
+      render :show_self
+    else
+      @user = User.find(params[:id])
+      render :show_other
+    end
+  end
 end
