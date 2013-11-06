@@ -1,7 +1,7 @@
 class Bill < ActiveRecord::Base
   attr_accessible :description, :owner_id, :total, :decimal_total, :bill_splits_attributes
 
-  validates :owner, :total, presence: true
+  validates :owner, :total, :description, presence: true
   validate :total_greater_than_num_bill_splits
   validate :bill_splits_sum_less_than_total
 
