@@ -13,7 +13,7 @@ class Bill < ActiveRecord::Base
   validates :decimal_total, numericality: true, allow_blank: true
   validate :presence_of_description_unless_settling
   validate :total_greater_than_num_bill_splits
-  validate :bill_splits_sum_less_than_total
+  validate :bill_splits_sum_not_greater_than_total
   validate :settling_has_exactly_one_split
 
   belongs_to :owner, class_name: "User"
@@ -69,7 +69,7 @@ class Bill < ActiveRecord::Base
     end
   end
 
-  def bill_splits_sum_less_than_total
+  def bill_splits_sum_not_greater_than_total
     if (!bill_splits.empty? && bill_split_sum > total)
       errors[:total] << "must be greater than the sum of the splits"
     end
