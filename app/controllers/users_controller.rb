@@ -35,7 +35,7 @@ class UsersController < ApplicationController
     other_user = User.find(params[:id])
     balance = current_user.balance_with(other_user)
     if balance > 0
-      Bill.create_settle(current_user, other_user)
+      Bill.create_settle!(current_user, other_user)
     else
       flash[:errors] = "You can only settle with people who owe you."
     end
