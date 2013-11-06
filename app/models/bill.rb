@@ -37,7 +37,7 @@ class Bill < ActiveRecord::Base
       debtor_id: owed_user.id,
       amount: balance
     })
-
+    
     bill.save!
   end
 
@@ -82,12 +82,12 @@ class Bill < ActiveRecord::Base
   end
 
   def settling_has_exactly_one_split
-    if(settling && bill_splits.count != 1)
+    if(settling && bill_splits.length != 1)
       errors[:bill_splits] << "must have exactly one split to settle"
     end
   end
 
   def default_settling_to_false
-    settling ||= false
+    self.settling = self.settling || false
   end
 end
