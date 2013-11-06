@@ -11,11 +11,12 @@
 
 <h2>People Who Owe You</h2>
 <table>
-  <tr><th>User</th><th>Amount</th></tr>
+  <tr><th>User</th><th>Amount</th><th> </th></tr>
   <% @owing_users.each do |user, amount| %>
     <tr>
       <td><%= user.name || user.email %></td>
       <td><%= Utilities::int_to_decimal(amount) %></td>
+      <td><%= link_to "settle", settle_user_url(user) %></td>
     </tr>
   <% end %>
 </table>
