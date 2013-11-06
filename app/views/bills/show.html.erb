@@ -1,2 +1,19 @@
-<h1>Bills#show</h1>
-<p>Find me in app/views/bills/show.html.erb</p>
+<h1>
+  <%= @bill.description %>
+  on <%= @bill.created_at.strftime("%-d.%b.%y") %>
+</h1>
+
+<h3>Total: $<%= @bill.decimal_total %></h3>
+<h3>Split with:</h3>
+<table>
+  <% @bill.bill_splits.each do |split| %>
+    <tr>
+      <td><%= split.debtor.name || split.debtor.email %></td>
+      <td>$<%= split.decimal_amount %></td>
+    </tr>
+  <% end %>
+  <tr>
+    <td>Your share</td>
+    <td>$<%= @bill.split_remainder %></td>
+  </tr>
+</table>
