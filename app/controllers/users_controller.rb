@@ -30,4 +30,15 @@ class UsersController < ApplicationController
       render :show_other
     end
   end
+
+  def settle
+    other_user = User.find(params[:id])
+    balance = current_user.balance_with(other_user)
+    if balance > 0
+      Bill.create_settle(current_user, other_user)
+    else
+      flash[:errors] = "You can only settle with people who owe you."
+    end
+    redirect_to user_url(current_user)
+  end
 end
