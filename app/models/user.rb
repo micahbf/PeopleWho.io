@@ -38,7 +38,13 @@ class User < ActiveRecord::Base
       user_balances[credit_split.debtor_id] += credit_split.amount
     end
 
-    user_balances.reject { |_, amount| amount == 0 }
+    user_balances.reject! { |_, amount| amount == 0 }
+
+    user_ids = user_balances.keys
+    user_mapping = Hash[user_ids.zip(User.find(user_ids))]
+
+    # new hash with User objects as keys and balances as values
+    Hash[user_balances.map { |k, v| [user_mapping[k], v] }]
   end
 
 
