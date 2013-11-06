@@ -12,14 +12,14 @@ class Bill < ActiveRecord::Base
 
   def decimal_total
     if total
-      return (total / 100).round(2)
+      return Utilities.int_to_decimal(total)
     else
       return nil
     end
   end
 
   def decimal_total= (decimal)
-    self.total = (decimal.to_f * 100).floor
+    self.total = Utilities.decimal_to_int(decimal)
   end
 
   def bill_split_sum

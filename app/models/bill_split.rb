@@ -8,13 +8,13 @@ class BillSplit < ActiveRecord::Base
 
   def decimal_amount
     if amount
-      return (amount / 100).round(2)
+      return Utilities.int_to_decimal(amount)
     else
       return nil
     end
   end
 
   def decimal_amount= (decimal)
-    self.amount = (decimal.to_f * 100).floor
+    self.amount = Utilities.decimal_to_int(decimal)
   end
 end

@@ -4,7 +4,7 @@
   <% @owed_users.each do |user, amount| %>
     <tr>
       <td><%= user.name || user.email %></td>
-      <td><%= int_to_decimal(amount) %></td>
+      <td><%= Utilities.int_to_decimal(amount) %></td>
     </tr>
   <% end %>
 </table>
@@ -15,7 +15,7 @@
   <% @owing_users.each do |user, amount| %>
     <tr>
       <td><%= user.name || user.email %></td>
-      <td><%= int_to_decimal(amount) %></td>
+      <td><%= Utilities.int_to_decimal(amount) %></td>
     </tr>
   <% end %>
 </table>
