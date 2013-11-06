@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    if params[:id] == current_user.id
+    if params[:id].to_i == current_user.id
       @user = current_user
       users_with_balances = @user.users_with_outstanding_balance
       @owed_users = users_with_balances.select { |_, bal| bal < 0 }
