@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   after_initialize :ensure_session_token
 
   has_many :paid_bills, class_name: "Bill", foreign_key: :owner_id
+  has_many :debt_splits, class_name: "BillSplit", foreign_key: :debtor_id
 
   def self.find_by_credentials(email, password)
     return self.find_by_email(email).authenticate(password)
@@ -23,7 +24,25 @@ class User < ActiveRecord::Base
     self.save!
   end
 
-  def balance_with (other_user)
+  def users_with_outstanding_balance
+    debits = self.debt_splits.includes(:bill)
+    credits = self.paid_bills.includes(:bill_splits)
+                             .map { |b| b.bill_splits }.flatten
+
+    user_balances = Hash.new(0)
+    debits.each do |debit_split|
+      user_balances[debit_split.bill.owner_id] -= debit_split.amount
+    end
+
+    credits.each do |credit_split|
+      user_balances[credit_split.debtor_id] += credit_split.amount
+    end
+
+    user_balances.reject { |_, amount| amount == 0 }
+  end
+
+
+  def balance_with(other_user)
     credit = BillSplit.joins(:bill)
                       .where("bill_splits.debtor_id" => other_user.id)
                       .where("bills.owner_id" => self.id)
