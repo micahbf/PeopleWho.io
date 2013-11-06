@@ -4,6 +4,7 @@ class BillSplit < ActiveRecord::Base
   validates :amount, :bill, :debtor, presence: true
   validates :amount, numericality: { only_integer: true }
   validates :decimal_amount, numericality: true, allow_blank: true
+  validate :debtor_cant_be_same_as_bill_owner
 
   belongs_to :bill
   belongs_to :debtor, class_name: "User"
@@ -34,5 +35,13 @@ class BillSplit < ActiveRecord::Base
 
   def decimal_amount= (decimal)
     self.amount = Utilities::decimal_to_int(decimal)
+  end
+
+  private
+
+  def debtor_cant_be_same_as_bill_owner
+    if (debtor_id == bill.owner_id)
+      errors[:debtor] << "can't be the same as bill owner"
+    end
   end
 end
