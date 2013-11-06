@@ -6,6 +6,20 @@ class BillSplit < ActiveRecord::Base
   belongs_to :bill
   belongs_to :debtor, class_name: "User"
 
+  def self.sum_for_user(splits, user)
+    user_id = user.id
+
+    splits.reduce(0) do |sum, split|
+      if split.debtor_id == user_id
+        sum -= split.amount
+      elsif split.bill.owner_id == user_id
+        sum += split.amount
+      end
+
+      sum
+    end
+  end
+
   def decimal_amount
     if amount
       return Utilities::int_to_decimal(amount)
