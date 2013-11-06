@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    if params[:id] = current_user.id
+    if params[:id] == current_user.id
       @user = current_user
       users_with_balances = @user.users_with_outstanding_balance
       @owed_users = users_with_balances.select { |_, bal| bal < 0 }
@@ -25,6 +25,8 @@ class UsersController < ApplicationController
       render :show_self
     else
       @user = User.find(params[:id])
+      @splits = current_user.splits_with(@user)
+      @balance = BillSplit.sum_for_user(@splits, current_user)
       render :show_other
     end
   end
