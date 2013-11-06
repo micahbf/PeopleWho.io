@@ -16,7 +16,7 @@
     <tr>
       <td><%= user.name || user.email %></td>
       <td><%= Utilities::int_to_decimal(amount) %></td>
-      <td><%= link_to "settle", settle_user_url(user) %></td>
+      <td><%= button_to "settle", settle_user_url(user), method: :post %></td>
     </tr>
   <% end %>
 </table>
