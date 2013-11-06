@@ -2,6 +2,8 @@ class BillSplit < ActiveRecord::Base
   attr_accessible :amount, :bill_id, :debtor_id, :decimal_amount
 
   validates :amount, :bill, :debtor, presence: true
+  validates :amount, numericality: { only_integer: true }
+  validates :decimal_amount, numericality: true, allow_blank: true
 
   belongs_to :bill
   belongs_to :debtor, class_name: "User"
