@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
 
   after_initialize :ensure_session_token
 
+  has_many :paid_bills, class_name: "Bill", foreign_key: :owner_id
+
   def self.find_by_credentials(email, password)
     return self.find_by_email(email).authenticate(password)
   end
@@ -19,6 +21,20 @@ class User < ActiveRecord::Base
   def reset_session_token!
     self.session_token = self.class.generate_session_token
     self.save!
+  end
+
+  def balance_with (other_user)
+    credit = BillSplit.joins(:bill)
+                      .where("bill_splits.debtor_id" => other_user.id)
+                      .where("bills.owner_id" => self.id)
+                      .sum("amount")
+
+    debt = BillSplit.joins(:bill)
+                    .where("bill_splits.debtor_id" => self.id)
+                    .where("bills.owner_id" => other_user.id)
+                    .sum("amount")
+
+    credit - debt
   end
 
   private
