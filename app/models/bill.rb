@@ -26,6 +26,10 @@ class Bill < ActiveRecord::Base
     bill_splits.map { |bs| bs.amount }.reduce(:+)
   end
 
+  def split_remainder
+    total - bill_split_sum
+  end
+
   private
 
   def total_greater_than_num_bill_splits
