@@ -21,6 +21,26 @@ class Bill < ActiveRecord::Base
   has_many :bill_splits, inverse_of: :bill
   accepts_nested_attributes_for :bill_splits
 
+  def self.create_settle!(owed_user, paying_user)
+    balance = owed_user.balance_with(paying_user)
+    if balance <= 0
+      raise "owed_user balance must be positive"
+    end
+
+    bill = Bill.new({
+      settling: true,
+      owner_id: paying_user.id,
+      total: balance
+    })
+
+    bill.bill_splits.build({
+      debtor_id: owed_user.id,
+      amount: balance
+    })
+
+    bill.save!
+  end
+
   def decimal_total
     if total
       return Utilities::int_to_decimal(total)
