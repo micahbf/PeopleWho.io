@@ -8,7 +8,7 @@ class BillSplit < ActiveRecord::Base
 
   def self.sum_for_user(splits, user)
     return 0 if splits.empty?
-    
+
     user_id = user.id
 
     splits.reduce(0) do |sum, split|
