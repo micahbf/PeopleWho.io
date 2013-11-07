@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
     self.name || self.email
   end
 
-  def users_with_outstanding_balance
+  def user_ids_with_outstanding_balance
     debits = self.debt_splits.includes(:bill)
     credits = self.paid_bills.includes(:bill_splits)
                              .map { |b| b.bill_splits }.flatten
@@ -42,7 +42,11 @@ class User < ActiveRecord::Base
       user_balances[credit_split.debtor_id] += credit_split.amount
     end
 
-    user_balances.reject! { |_, amount| amount == 0 }
+    user_balances.reject { |_, amount| amount == 0 }
+  end
+
+  def users_with_outstanding_balance
+    user_balances = user_ids_with_outstanding_balance
 
     user_ids = user_balances.keys.sort
     users = User.find(user_ids).sort_by { |u| u.id }
