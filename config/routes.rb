@@ -6,4 +6,8 @@ BillTracker::Application.routes.draw do
   end
   resource :session, only: [:new, :create, :destroy]
   resources :bills, only: [:new, :create, :index, :show]
+
+  namespace :api do
+    resources :users, only: [:show]
+  end
 end
