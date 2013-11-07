@@ -6,7 +6,13 @@ BT.Routers.AppRouter = Backbone.Router.extend({
   routes: {
     "": "showRoot"
   },
-  
+
+  showRoot: function () {
+    var rootView = new BT.Views.RootView();
+
+    this._swapView(rootView);
+  },
+
   _swapView: function(newView) {
     if (this._currView) {
       this._currView.remove();
