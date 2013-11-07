@@ -1,13 +1,15 @@
-window.BillTracker = {
+window.BT = {
   Models: {},
   Collections: {},
   Views: {},
   Routers: {},
   initialize: function() {
-    alert('Hello from Backbone!');
+    var bootstrap_data = JSON.parse($('#users_index_bootstrap').html());
+    BT.users = bootstrap_data.users;
+    BT.balances = bootstrap_data.balances;
   }
 };
 
 $(document).ready(function(){
-  BillTracker.initialize();
+  BT.initialize();
 });
