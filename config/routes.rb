@@ -9,5 +9,6 @@ BillTracker::Application.routes.draw do
 
   namespace :api do
     resources :users, only: [:show, :index]
+    resources :bills, only: [:create, :show]
   end
 end
