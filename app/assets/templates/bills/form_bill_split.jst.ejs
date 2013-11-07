@@ -1,0 +1,12 @@
+<div class="bill-split-form">
+  Split with:<br>
+  <label for="bill_split_<%= split_num %>_debtor_id">ID: </label>
+  <input type="text"
+         id="bill_split_<%= split_num %>_debtor_id"
+         name="bill[bill_splits_attributes][<%= split_num %>][debtor_id]">
+
+  $<input type="text"
+         id="bill_split_<%= split_num %>_amount"
+         name="bill[bill_splits_attributes][<%= split_num %>][decimal_amount]"
+         placeholder="10.00">
+</div>
