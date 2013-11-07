@@ -2,21 +2,21 @@ BT.Views.RootView = Backbone.View.extend({
   userBalancesTemplate: JST['users/balances'],
 
   render: function () {
-    var owed_users = {};
-    var owing_users = {};
+    var owedUsers = {};
+    var owingUsers = {};
 
     _.each(BT.balances, function (balance, user_id) {
-      var disp_name = BT.users.get(user_id).displayName();
+      var dispName = BT.users.get(user_id).displayName();
       if (balance < 0) {
-        owed_users[disp_name] = BT.int_to_dec(balance);
+        owedUsers[dispName] = BT.int_to_dec(balance);
       } else {
-        owing_users[disp_name] = BT.int_to_dec(balance);
+        owingUsers[dispName] = BT.int_to_dec(balance);
       }
     });
 
     var renderedBalances = this.userBalancesTemplate({
-      owed_users: owed_users,
-      owing_users: owing_users
+      owedUsers: owedUsers,
+      owingUsers: owingUsers
     });
 
     this.$el.html(renderedBalances);

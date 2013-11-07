@@ -1,7 +1,7 @@
 <h3>People You Owe</h3>
 <table class="table table-striped">
   <tr><th>User</th><th>Amount</th></tr>
-  <% _.each(owed_users, function(amount, dispName) { %>
+  <% _.each(owedUsers, function(amount, dispName) { %>
     <tr>
       <td><%= dispName %></td>
       <td><span class="text-danger"><%= amount %></span></td>
@@ -12,7 +12,7 @@
 <h3>People Who Owe You</h3>
 <table class="table table-striped">
   <tr><th>User</th><th>Amount</th><th> </th></tr>
-  <% _.each(owing_users, function(amount, dispName) { %>
+  <% _.each(owingUsers, function(amount, dispName) { %>
     <tr>
       <td><%= dispName %></td>
       <td><%= amount %></td>
