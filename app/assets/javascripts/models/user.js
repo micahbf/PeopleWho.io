@@ -1,9 +1,9 @@
 BT.Models.User = Backbone.Model.extend({
   displayName: function () {
     if (this.name) {
-      return this.name;
+      return this.escape("name");
     } else {
-      return this.email;
+      return this.escape("email");
     }
   }
 });
