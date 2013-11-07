@@ -29,4 +29,6 @@ group :development do
   gem 'meta_request'
   gem 'awesome_print'
   gem 'pry-rails'
+  gem 'pry-stack_explorer'
+  gem 'pry-debugger'
 end
