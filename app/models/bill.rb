@@ -89,5 +89,8 @@ class Bill < ActiveRecord::Base
 
   def default_settling_to_false
     self.settling = self.settling || false
+    # Returning false will halt the validation chain,
+    # so true is returned to ensure its continuation
+    true
   end
 end
