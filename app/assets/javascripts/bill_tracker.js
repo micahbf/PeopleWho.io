@@ -9,6 +9,14 @@ window.BT = {
     BT.balances = bootstrap_data.balances;
     new BT.Routers.AppRouter($('#content'));
     Backbone.history.start();
+  },
+
+  int_to_dec: function (int) {
+    return (int/100).toFixed(2);
+  },
+
+  dec_to_int: function (dec) {
+    return Math.floor(parseFloat(dec) * 100);
   }
 };
 
