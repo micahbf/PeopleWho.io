@@ -1,4 +1,4 @@
-<div id="all"></div>
+<div id="content"></div>
 
 <script id="users_index_bootstrap" type="application/json">
   <%= j(Rabl::Renderer.json(@users, 'users/_only_users', locals: { users: @users }))[0...-1].html_safe %>, 
