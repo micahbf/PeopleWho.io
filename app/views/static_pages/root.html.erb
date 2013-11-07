@@ -1,1 +1,6 @@
 <div id="all"></div>
+
+<script id="users_index_bootstrap" type="application/json">
+  <%= j(Rabl::Renderer.json(@users, 'users/_only_users', locals: { users: @users }).html_safe) %>
+  <%= j({ balances: @users_with_balances }.to_json.html_safe) %>
+</script>
