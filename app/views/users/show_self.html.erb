@@ -17,7 +17,7 @@
       <td><%= user.name || user.email %></td>
       <td><%= Utilities::int_to_decimal(amount) %></td>
       <td><%= button_to "settle", settle_user_url(user),
-              method: :post, class: "btn btn-info btn-xs" %></td>
+              method: :post, class: "btn btn-info btn-sm" %></td>
     </tr>
   <% end %>
 </table>
