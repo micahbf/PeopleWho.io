@@ -4,8 +4,8 @@ attributes :id, :name, :email
 node(:balance) { @balance }
 
 child @splits, object_root: false do
-  attributes :amount
+  attributes :id, :amount
   child :bill, object_root: false do
-    attributes :description, :total, :settling
+    attributes :id, :description, :total, :settling, :created_at
   end
 end
