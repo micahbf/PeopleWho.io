@@ -11,4 +11,6 @@ BillTracker::Application.routes.draw do
     resources :users, only: [:show, :index]
     resources :bills, only: [:create, :show]
   end
+
+  root to: "static_pages#root"
 end
