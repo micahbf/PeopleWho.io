@@ -1,0 +1,6 @@
+{
+  "globals" : {
+    "BT" : false,
+    "Backbone" : false
+  }
+}
