@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
+//= require typeahead
 //= require underscore
 //= require backbone
 //= require bill_tracker
