@@ -7,4 +7,16 @@ class Api::UsersController < ApplicationController
     @balance = BillSplit.sum_for_user(@splits, current_user)
     render "show"
   end
+
+  def settle
+    other_user = User.find(params[:id])
+    balance = current_user.balance_with(other_user)
+    if balance > 0
+      bill = Bill.create_settle!(current_user, other_user)
+      render json: bill
+    else
+      render json: { errors: ["You can only settle with people who owe you."] },
+             status: 422
+    end
+  end
 end
