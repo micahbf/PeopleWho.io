@@ -7,22 +7,33 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<nav class="navbar navbar-default">
+  <div class="nav navbar-left">
+    <span class="navbar-brand">PeopleWho.io</span>
+  </div>
 <% if !current_user.nil? %>
-  <ul>
-    <li>Logged in as: <%= current_user.email %></li>
-    <li><%= button_to "Logout", session_url, :method => :delete %></li>
+  <ul class="nav navbar-nav navbar-right">
+    <li class="navbar-text">Logged in as: <%= current_user.email %></li>
+    <li><%= button_to "Logout", session_url,
+            method: :delete, class: "btn btn-warning navbar-btn" %></li>
   </ul>
 <% end %>
+</nav>
 
-<% if flash[:errors] || flash[:notices] %>
-  <ul>
-  <% flash.each do |name, msg| %>
-    <li><%= msg %></li>
-  <% end %>
-  </ul>
+<div class="container">
+<% if flash[:errors] %>
+  <div class="alert alert-danger">
+    <%= flash[:errors] %>
+  </div>
+<% end %>
+
+<% if flash[:notices] %>
+  <div class="alert alert-success">
+    <%= flash[:notices] %>
+  </div>
 <% end %>
 
 <%= yield %>
-
+</div>
 </body>
 </html>
