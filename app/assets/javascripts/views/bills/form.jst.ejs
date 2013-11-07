@@ -1,0 +1,21 @@
+<form id="new-bill-form">
+
+  <label for="bill_description">For: </label>
+  <input type="text"
+         id="bill_description"
+         name="bill[description]"
+         value="<%= bill.description %>"
+         placeholder="Dinner">
+  <label for="bill_total">Total: $</label>
+  <input type="text"
+         id="bill_total"
+         name="bill[decimal_total]"
+         value="<%= bill.decimal_total %>"
+         placeholder="20.00"><br>
+
+  <div id="bill-splits"></div>
+
+  <input type="submit"
+         class="btn btn-primary"
+         value="<%= submit_val %>">
+</form>
