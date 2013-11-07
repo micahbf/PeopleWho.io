@@ -3,11 +3,15 @@ BT.Views.NewBillFormView = Backbone.View.extend({
   splitTemplate: JST['bills/form_bill_split'],
   splitCounter: 0,
 
+  events: {
+    "click #add-split": "addSplit"
+  },
+
   render: function () {
-    var renderedForm = this.template();
-    this.$splitsDiv = $(renderedForm).find("#bill-splits");
+    var $renderedForm = $(this.template());
+    this.$splitsDiv = $renderedForm.find("#bill-splits");
     this.addSplit();
-    this.$el.html(renderedForm);  
+    this.$el.append($renderedForm);
     return this;
   },
 
