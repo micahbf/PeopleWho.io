@@ -1,9 +1,14 @@
 BT.Views.RootView = Backbone.View.extend({
   render: function () {
+    var $layout = $(JST['layouts/main']());
+    debugger;
+
     var balancesView = new BT.Views.UserBalanceView();
-    this.$el.html(balancesView.render().$el);
     var newBillFormView = new BT.Views.NewBillFormView();
-    this.$el.prepend(newBillFormView.render().$el);
+
+    $layout.find("#main").append(balancesView.render().$el);
+    $layout.find("#form").append(newBillFormView.render().$el);
+    this.$el = $layout;
     return this;
   }
 });
