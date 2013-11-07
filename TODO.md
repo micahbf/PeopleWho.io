@@ -1,1 +1,5 @@
 - write more model specs
+- associated users
+- facebook integration
+- currency api
+- photo uploads
