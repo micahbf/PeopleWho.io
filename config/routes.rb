@@ -8,6 +8,6 @@ BillTracker::Application.routes.draw do
   resources :bills, only: [:new, :create, :index, :show]
 
   namespace :api do
-    resources :users, only: [:show]
+    resources :users, only: [:show, :index]
   end
 end
