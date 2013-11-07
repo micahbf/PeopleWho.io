@@ -6,7 +6,7 @@ BT.Views.RootView = Backbone.View.extend({
     var owing_users = {};
 
     _.each(BT.balances, function (balance, user_id) {
-      var disp_name = BT.Collections.Users.get(user_id).displayName();
+      var disp_name = BT.users.get(user_id).displayName();
       if (balance < 0) {
         owed_users[disp_name] = balance;
       } else {
