@@ -1,6 +1,11 @@
 class Api::UsersController < ApplicationController
   respond_to :json
 
+  def index
+    @users_with_balances = current_user.users_with_outstanding_balance
+    render "index"
+  end
+
   def show
     @user = User.find(params[:id])
     @splits = current_user.splits_with(@user)
