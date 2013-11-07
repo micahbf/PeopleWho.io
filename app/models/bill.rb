@@ -8,7 +8,7 @@ class Bill < ActiveRecord::Base
 
   before_validation :default_settling_to_false
 
-  validates :owner, :total, :settling, presence: true
+  validates :owner, :total, presence: true
   validates :total, numericality: { only_integer: true }
   validates :decimal_total, numericality: true, allow_blank: true
   validate :presence_of_description_unless_settling
