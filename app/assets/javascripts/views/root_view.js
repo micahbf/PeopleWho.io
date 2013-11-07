@@ -8,9 +8,9 @@ BT.Views.RootView = Backbone.View.extend({
     _.each(BT.balances, function (balance, user_id) {
       var disp_name = BT.users.get(user_id).displayName();
       if (balance < 0) {
-        owed_users[disp_name] = balance;
+        owed_users[disp_name] = BT.int_to_dec(balance);
       } else {
-        owing_users[disp_name] = balance;
+        owing_users[disp_name] = BT.int_to_dec(balance);
       }
     });
 
