@@ -5,6 +5,10 @@ BT.Views.UserBalanceView = Backbone.View.extend({
     this.listenTo(BT.bills, "newBalances", this.render);
   },
 
+  events: {
+    "click .settle-btn": "settle"
+  },
+
   render: function () {
     var owedUsers = [];
     var owingUsers = [];
@@ -31,5 +35,17 @@ BT.Views.UserBalanceView = Backbone.View.extend({
 
     this.$el.html(renderedBalances);
     return this;
+  },
+
+  settle: function (event) {
+    event.preventDefault();
+    var userId = $(event.target).data("user-id");
+    $.ajax({
+      url: "/api/users/" + userId + "/settle",
+      type: "post",
+      success: function () {
+        $("tr[data-user-id='" + userId + "']").fadeOut();
+      }
+    });
   }
 });
