@@ -1,5 +1,9 @@
 <div id="content"></div>
 
+<script id="current_user_id" type="application/javascript">
+  CURRENT_USER_ID = @current_user_id
+</script>
+
 <script id="users_index_bootstrap" type="application/json">
   <%= j(Rabl::Renderer.json(@users, 'users/_only_users', locals: { users: @users }))[0...-1].html_safe %>, 
   <%= j({ balances: @users_with_balances }.to_json)[1..-1].html_safe %>
