@@ -1,4 +1,6 @@
 BT.Models.Bill = Backbone.Model.extend({
+  urlRoot: "/api/bills",
+  
   initialize: function () {
     this.billSplits = this.billSplits || new BT.Collections.BillSplits([], {
       bill: this
