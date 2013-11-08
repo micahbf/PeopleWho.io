@@ -1,0 +1,1 @@
+BT.Models.Bill = Backbone.Model.extend({});
