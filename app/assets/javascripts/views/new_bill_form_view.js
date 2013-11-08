@@ -4,7 +4,8 @@ BT.Views.NewBillFormView = Backbone.View.extend({
   splitCounter: 0,
 
   events: {
-    "click #add-split": "addSplit"
+    "click #add-split": "addSplit",
+    "submit": "submit"
   },
 
   initialize: function () {
@@ -33,5 +34,11 @@ BT.Views.NewBillFormView = Backbone.View.extend({
 
     this.$splitsDiv.append($renderedSplit);
     this.splitCounter += 1;
+  },
+
+  submit: function (event) {
+    event.preventDefault();
+    billAttrs = $(event.target).serializeJSON();
+    BT.bills.create(billAttrs);
   }
 });
