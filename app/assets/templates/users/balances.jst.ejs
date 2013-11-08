@@ -24,7 +24,7 @@
         </a>
       </td>
       <td><%= userBal.balance %></td>
-      <td>settle</td>
+      <td><button class="settle-btn btn btn-info btn-sm" data-user-id="<%= userBal.user.id %>">settled</button></td>
     </tr>
   <% }) %>
 </table>
