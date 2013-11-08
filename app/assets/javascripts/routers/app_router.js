@@ -15,14 +15,18 @@ BT.Routers.AppRouter = Backbone.Router.extend({
   },
 
   showUser: function (id) {
+    var self = this;
     var user = BT.users.get(id);
-    user.fetch();
+    var userView;
+    user.fetch({
+      success: function () {
+        userView = new BT.Views.UserShowView({
+          model: user
+        });
 
-    var userView = new BT.Views.UserShowView({
-      model: user
+        self._swapMain(userView);
+      }
     });
-
-    this._swapMain(userView);
   },
 
   _swapLayout: function(newView) {
