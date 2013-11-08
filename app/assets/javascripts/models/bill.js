@@ -14,6 +14,11 @@ BT.Models.Bill = Backbone.Model.extend({
       delete serverAttrs.bill.billSplits;
     }
 
+    if (serverAttrs.bill.created_at) {
+      this.attributes.created_at = moment(serverAttrs.bill.created_at);
+      delete serverAttrs.bill.created_at;
+    }
+
     return serverAttrs;
   },
 
@@ -21,6 +26,7 @@ BT.Models.Bill = Backbone.Model.extend({
     var json = _.extend({}, this.attributes);
     json.bill_splits = this.billSplits.toJSON;
 
+    delete json.created_at;
     return json;
   }
 });
