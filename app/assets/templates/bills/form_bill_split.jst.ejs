@@ -1,12 +1,23 @@
 <div class="bill-split-form">
+<div class="row">
+<div class="col-md-8">
+  <span class="input-group">
   <input type="text"
          id="bill_split_<%= splitNum %>_debtor_id"
-         class="user-autocomplete"
+         class="user-autocomplete form-control"
          name="bill[bill_splits_attributes][<%= splitNum %>][debtor_id]"
          placeholder="Name or Email">
-
-  $<input type="text"
+  </span>
+</div>
+<div class="col-md-4">
+  <span class="input-group">
+  <span class="input-group-addon">$</span>
+  <input type="text"
          id="bill_split_<%= splitNum %>_amount"
+         class="form-control"
          name="bill[bill_splits_attributes][<%= splitNum %>][decimal_amount]"
          placeholder="10.00">
+  </span>
+  </div>
+</div>
 </div>

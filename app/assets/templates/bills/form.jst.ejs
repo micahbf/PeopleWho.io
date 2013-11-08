@@ -5,16 +5,29 @@
 <div class="panel-body">
 <form id="new-bill-form">
 
-  <label for="bill_description">For: </label>
-    <input type="text"
-           id="bill_description"
-           name="bill[description]"
-           placeholder="Dinner">
-    <label for="bill_total">Total: $</label>
-    <input type="text"
-           id="bill_total"
-           name="bill[decimal_total]"
-           placeholder="20.00"><br>
+  <div class="row">
+  <div class="col-md-8">
+    <div class="input-group">
+      <label for="bill_description" class="control-label">For: </label>
+        <input type="text"
+               id="bill_description"
+               name="bill[description]"
+               class="form-control"
+               placeholder="Dinner">
+    </div>
+    </div>
+    <div class="col-md-4">
+    <div class="input-group">
+        <label for="bill_total" class="control-label">Total:</label>
+        <span class="input-group-addon">$</span>
+        <input type="text"
+               id="bill_total"
+               name="bill[decimal_total]"
+               class="form-control"
+               placeholder="20.00"><br>
+    </div>
+    </div>
+  </div>
 
     <div id="bill-splits">Split with:<br></div>
 
