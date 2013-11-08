@@ -7,6 +7,7 @@ window.BT = {
     var bootstrap_data = JSON.parse($('#users_index_bootstrap').html());
     BT.users = new BT.Collections.Users(bootstrap_data.users);
     BT.balances = bootstrap_data.balances;
+    BT.bills = new BT.Collections.Bills();
     new BT.Routers.AppRouter($('#content'));
     Backbone.history.start();
   },
