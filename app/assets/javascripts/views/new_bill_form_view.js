@@ -49,6 +49,7 @@ BT.Views.NewBillFormView = Backbone.View.extend({
       delete splitAttrs.debtor_ident;
     });
 
-    BT.bills.create(billAttrs);
+    var bill = new BT.Models.Bill();
+    bill.save(billAttrs);
   }
 });
