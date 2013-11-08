@@ -1,0 +1,1 @@
+BT.Models.BillSplit = Backbone.Model.extend({});
