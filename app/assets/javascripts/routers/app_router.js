@@ -18,7 +18,7 @@ BT.Routers.AppRouter = Backbone.Router.extend({
       this._currView.remove();
     }
 
-    this.$rootEl.html(newView.render().$el);
+    this.$rootEl.replaceWith(newView.render().$el);
     this._currView = newView;
   }
 });
