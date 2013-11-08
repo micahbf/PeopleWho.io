@@ -4,21 +4,36 @@ BT.Routers.AppRouter = Backbone.Router.extend({
   },
 
   routes: {
-    "": "showRoot"
+    "": "showRoot",
+    "/users/:id": "showUser"
   },
 
   showRoot: function () {
     var rootView = new BT.Views.RootView();
 
-    this._swapView(rootView);
+    this._swapLayout(rootView);
   },
 
-  _swapView: function(newView) {
+  showUser: function (id) {
+    var user = BT.users.get(id);
+    var userView = new BT.Views.UserView({
+      model: user
+    });
+
+    this._swapMain(userView);
+  },
+
+  _swapLayout: function(newView) {
     if (this._currView) {
       this._currView.remove();
     }
 
     this.$rootEl.replaceWith(newView.render().$el);
     this._currView = newView;
+  },
+
+  _swapMain: function(newView) {
+    $main = this.$rootEl.find('#main');
+    $main.html(newView.render().$el);
   }
 });
