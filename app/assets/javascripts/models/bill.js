@@ -8,10 +8,10 @@ BT.Models.Bill = Backbone.Model.extend({
   },
 
   parse: function (serverAttrs) {
-    if (serverAttrs.bill_splits) {
-      this.billSplits.add(serverAttrs.bill_splits);
+    if (serverAttrs.bill.bill_splits) {
+      this.billSplits.add(serverAttrs.bill.bill_splits);
 
-      delete serverAttrs.billSplits;
+      delete serverAttrs.bill.billSplits;
     }
 
     return serverAttrs;
