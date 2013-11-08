@@ -2,11 +2,11 @@
 
 <h3>
   <% if (user.balance < 0) { %>
-    You owe them $<%= BT.int_to_decimal(user.balance * -1) %>
+    You owe them $<%= BT.int_to_dec(user.balance * -1) %>
   <% } else if (user.balance === 0) { %>
     You're even steven!
   <% } else { %>
-    They owe you $<%= BT.int_to_decimal(user.balance) %>
+    They owe you $<%= BT.int_to_dec(user.balance) %>
   <% } %>
 </h3>
 
@@ -15,7 +15,7 @@
     <tr>
       <td><%= split.bill.created_at.format("D.MMM.YY") %></td>
       <td><%= split.bill.description %></td>
-      <td><% if (split.debtor_id === CURRENT_USER_ID) { %>-<% } %>$<%= BT.int_to_decimal(split.amount) %></td>
+      <td><% if (split.debtor_id === CURRENT_USER_ID) { %>-<% } %>$<%= BT.int_to_dec(split.amount) %></td>
     </tr>
   <% }) %>
 </table>
