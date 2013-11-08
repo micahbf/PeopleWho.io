@@ -17,6 +17,7 @@
 //= require typeahead
 //= require underscore
 //= require backbone
+//= require moment-with-langs.min
 //= require bill_tracker
 //= require_tree ../templates
 //= require_tree ./models
