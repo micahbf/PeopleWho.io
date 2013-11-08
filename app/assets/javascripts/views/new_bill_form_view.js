@@ -40,12 +40,12 @@ BT.Views.NewBillFormView = Backbone.View.extend({
     event.preventDefault();
     var billAttrs = $(event.target).serializeJSON();
 
-    _.each(billAttrs.bill_split_attributes, function (splitAttrs) {
-      var user_id = BT.users.find(function (user) {
+    _.each(billAttrs.bill.bill_splits_attributes, function (splitAttrs) {
+      var user = BT.users.find(function (user) {
         return (user.get("email") === splitAttrs.debtor_ident ||
                 user.get("name") === splitAttrs.debtor_ident);
       });
-      splitAttrs.debtor_id = user_id;
+      splitAttrs.debtor_id = user.id;
       delete splitAttrs.debtor_ident;
     });
 
