@@ -1,17 +1,18 @@
 BT.Routers.AppRouter = Backbone.Router.extend({
   initialize: function ($rootEl) {
     this.$rootEl = $rootEl;
+    this._initLayout();
   },
 
   routes: {
-    "": "showRoot",
+    "": "showBalances",
     "users/:id": "showUser"
   },
 
-  showRoot: function () {
-    var rootView = new BT.Views.RootView();
+  showBalances: function (id) {
+    var balancesView = new BT.Views.UserBalanceView();
 
-    this._swapLayout(rootView);
+    this._swapMain(balancesView);
   },
 
   showUser: function (id) {
@@ -29,17 +30,17 @@ BT.Routers.AppRouter = Backbone.Router.extend({
     });
   },
 
-  _swapLayout: function(newView) {
-    if (this._currView) {
-      this._currView.remove();
-    }
-
-    this.$rootEl.html(newView.render().$el);
-    this._currView = newView;
+  _initLayout: function() {
+    var rootView = new BT.Views.RootView();
+    this.$rootEl.html(rootView.render().$el);
   },
 
   _swapMain: function(newView) {
+    if (this._currMain) {
+      _currMain.remove();
+    }
     $main = this.$rootEl.find('#main');
     $main.html(newView.render().$el);
+    _currMain = newView;
   }
 });
