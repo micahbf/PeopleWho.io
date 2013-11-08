@@ -14,7 +14,13 @@
   <% _.each(user.get("bill_splits"), function(split) { %>
     <tr>
       <td><%= moment(split.bill.created_at).format("D.MMM.YY") %></td>
-      <td><%= split.bill.description %></td>
+      <td>
+        <% if(split.bill.settling) { %>
+          <span class="text-primary">Settled up!</span>
+        <% } else { %>
+          <%= split.bill.description %>
+        <% } %>
+      </td>
       <td><% if (split.debtor_id === CURRENT_USER_ID) { %>-<% } %>$<%= BT.int_to_dec(split.amount) %></td>
     </tr>
   <% }) %>
