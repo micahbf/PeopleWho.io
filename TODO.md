@@ -3,3 +3,4 @@
 - facebook integration
 - currency api
 - photo uploads
+- prevent users from seeing bills they are not associated with
