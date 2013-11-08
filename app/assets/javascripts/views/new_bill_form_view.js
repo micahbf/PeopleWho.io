@@ -22,10 +22,16 @@ BT.Views.NewBillFormView = Backbone.View.extend({
   },
 
   addSplit: function () {
-    var renderedSplit = this.splitTemplate({
+    var $renderedSplit = $(this.splitTemplate({
       splitNum: this.splitCounter
+    }));
+
+    $renderedSplit.find(".user-autocomplete").typeahead({
+      name: 'users',
+      local: BT.userAutocompletes
     });
-    this.$splitsDiv.append(renderedSplit);
+
+    this.$splitsDiv.append($renderedSplit);
     this.splitCounter += 1;
   }
 });
