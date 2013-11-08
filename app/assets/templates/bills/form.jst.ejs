@@ -1,24 +1,30 @@
+<div class="panel-heading">
+  <h3 class="panel-title">Split a bill!</h3>
+</div>
+
+<div class="panel-body">
 <form id="new-bill-form">
 
   <label for="bill_description">For: </label>
-  <input type="text"
-         id="bill_description"
-         name="bill[description]"
-         placeholder="Dinner">
-  <label for="bill_total">Total: $</label>
-  <input type="text"
-         id="bill_total"
-         name="bill[decimal_total]"
-         placeholder="20.00"><br>
+    <input type="text"
+           id="bill_description"
+           name="bill[description]"
+           placeholder="Dinner">
+    <label for="bill_total">Total: $</label>
+    <input type="text"
+           id="bill_total"
+           name="bill[decimal_total]"
+           placeholder="20.00"><br>
 
-  <div id="bill-splits">Split with:<br></div>
+    <div id="bill-splits">Split with:<br></div>
 
-  <input type="button"
-         class="btn btn-info"
-         id="add-split"
-         value="Add a split">
+    <input type="button"
+           class="btn btn-info"
+           id="add-split"
+           value="Add a split">
 
-  <input type="submit"
-         class="btn btn-primary"
-         value="Split it!">
-</form>
+    <input type="submit"
+           class="btn btn-primary"
+           value="Split it!">
+  </form>
+</div>
