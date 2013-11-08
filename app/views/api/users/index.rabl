@@ -1,6 +1,6 @@
 object false
 
-child @users, object_root: false do
+child @users do
   attributes :id, :email, :name
 end
 
