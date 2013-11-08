@@ -7,6 +7,12 @@ BT.Views.NewBillFormView = Backbone.View.extend({
     "click #add-split": "addSplit"
   },
 
+  initialize: function () {
+    if(BT.userAutocompletes === undefined) {
+      BT.populateUserAutocompletes();
+    }
+  },
+
   render: function () {
     var $renderedForm = $(this.template());
     this.$splitsDiv = $renderedForm.find("#bill-splits");

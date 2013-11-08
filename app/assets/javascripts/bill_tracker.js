@@ -11,6 +11,16 @@ window.BT = {
     Backbone.history.start();
   },
 
+  populateUserAutocompletes: function () {
+    BT.userAutocompletes = [];
+    BT.users.each(function (user) {
+      BT.userAutocompletes.push(user.escape("email"));
+      if (user.get("name")) {
+        BT.userAutocompletes.push(user.escape("name"));
+      }
+    });
+  },
+
   int_to_dec: function (int) {
     return (int/100).toFixed(2);
   },
