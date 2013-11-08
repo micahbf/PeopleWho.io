@@ -2,7 +2,7 @@
 <table class="table table-striped">
   <tr><th>User</th><th>Amount</th></tr>
   <% _.each(owedUsers, function(userBal) { %>
-    <tr>
+    <tr data-user-id="<%= userBal.user.id %>">
       <td>
         <a href="#/users/<%= userBal.user.id %>">
           <%= userBal.user.displayName() %>
@@ -17,7 +17,7 @@
 <table class="table table-striped">
   <tr><th>User</th><th>Amount</th><th> </th></tr>
   <% _.each(owingUsers, function(userBal) { %>
-    <tr>
+    <tr data-user-id="<%= userBal.user.id %>">
       <td>
         <a href="#/users/<%= userBal.user.id %>">
           <%= userBal.user.displayName() %>
