@@ -20,7 +20,8 @@ BT.Views.UserBalanceView = Backbone.View.extend({
         owingUsers.push({
           user: user,
           balance: BT.int_to_dec(balance)
-        });      }
+        });
+      }
     });
 
     var renderedBalances = this.template({
