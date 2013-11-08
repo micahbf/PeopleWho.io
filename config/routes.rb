@@ -8,7 +8,11 @@ BillTracker::Application.routes.draw do
   resources :bills, only: [:new, :create, :index, :show]
 
   namespace :api do
-    resources :users, only: [:show, :index]
+    resources :users, only: [:show, :index] do
+      member do
+        post :settle
+      end
+    end
     resources :bills, only: [:create, :show, :index]
   end
 
