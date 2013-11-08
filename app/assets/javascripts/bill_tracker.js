@@ -17,7 +17,12 @@ window.BT = {
 
   recalculateBalances: function(newBill) {
     newBill.billSplits.each(function(split) {
-      BT.balances[split.get("debtor_id")] += split.get("amount");
+      var debtorId = split.get("debtor_id");
+      if (BT.balances[debtorId] === undefined) {
+        BT.balances[debtorId] = split.get("amount");
+      } else {
+        BT.balances[split.get("debtor_id")] += split.get("amount");
+      }
     });
 
     BT.bills.trigger("newBalances");
