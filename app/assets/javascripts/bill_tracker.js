@@ -8,8 +8,19 @@ window.BT = {
     BT.users = new BT.Collections.Users(bootstrap_data.users);
     BT.balances = bootstrap_data.balances;
     BT.bills = new BT.Collections.Bills();
+
+    BT.bills.on("add", this.recalculateBalances, this);
+
     new BT.Routers.AppRouter($('#content'));
     Backbone.history.start();
+  },
+
+  recalculateBalances: function(newBill) {
+    newBill.billSplits.each(function(split) {
+      BT.balances[split.debtor_id] += split.amount;
+    });
+    
+    BT.bills.trigger("newBalances");
   },
 
   populateUserAutocompletes: function () {
