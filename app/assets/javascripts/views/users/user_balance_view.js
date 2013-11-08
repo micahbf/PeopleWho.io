@@ -1,6 +1,10 @@
 BT.Views.UserBalanceView = Backbone.View.extend({
   template: JST['users/balances'],
 
+  initialize: function () {
+    this.listenTo(BT.bills, "newBalances", this.render);
+  },
+
   render: function () {
     var owedUsers = {};
     var owingUsers = {};
