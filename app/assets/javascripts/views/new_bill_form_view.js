@@ -50,6 +50,6 @@ BT.Views.NewBillFormView = Backbone.View.extend({
     });
 
     var bill = new BT.Models.Bill();
-    bill.save(billAttrs);
+    BT.bills.create(billAttrs);
   }
 });
