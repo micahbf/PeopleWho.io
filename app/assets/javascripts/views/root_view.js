@@ -1,7 +1,6 @@
 BT.Views.RootView = Backbone.View.extend({
   render: function () {
     var $layout = $(JST['layouts/main']());
-    debugger;
 
     var balancesView = new BT.Views.UserBalanceView();
     var newBillFormView = new BT.Views.NewBillFormView();
