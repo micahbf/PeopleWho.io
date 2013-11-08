@@ -10,11 +10,11 @@ BT.Views.UserBalanceView = Backbone.View.extend({
     var owingUsers = {};
 
     _.each(BT.balances, function (balance, user_id) {
-      var dispName = BT.users.get(user_id).displayName();
+      var user = BT.users.get(user_id);
       if (balance < 0) {
-        owedUsers[dispName] = BT.int_to_dec(balance);
+        owedUsers[user] = BT.int_to_dec(balance);
       } else {
-        owingUsers[dispName] = BT.int_to_dec(balance);
+        owingUsers[user] = BT.int_to_dec(balance);
       }
     });
 
