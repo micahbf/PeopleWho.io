@@ -5,7 +5,7 @@ BT.Routers.AppRouter = Backbone.Router.extend({
 
   routes: {
     "": "showRoot",
-    "/users/:id": "showUser"
+    "users/:id": "showUser"
   },
 
   showRoot: function () {
