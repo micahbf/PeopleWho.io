@@ -6,7 +6,7 @@ class Api::BillsController < ApplicationController
     @bill.owner_id = current_user.id
 
     if @bill.save
-      render "show"
+      render :show, :handlers => [:rabl]
     else
       render json: { errors: @bill.errors.full_messages },
              status: 422
