@@ -3,7 +3,7 @@ class Api::BillsController < ApplicationController
 
   def create
     @bill = Bill.new(params[:bill])
-    @bill.owner_id = current_user.owner_id
+    @bill.owner_id = current_user.id
 
     if @bill.save
       render "show"
