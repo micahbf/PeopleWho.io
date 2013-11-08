@@ -9,7 +9,7 @@ window.BT = {
     BT.balances = bootstrap_data.balances;
     BT.bills = new BT.Collections.Bills();
 
-    BT.bills.on("add", this.recalculateBalances, this);
+    BT.bills.on("sync", this.recalculateBalances, this);
 
     new BT.Routers.AppRouter($('#content'));
     Backbone.history.start();
@@ -17,9 +17,9 @@ window.BT = {
 
   recalculateBalances: function(newBill) {
     newBill.billSplits.each(function(split) {
-      BT.balances[split.debtor_id] += split.amount;
+      BT.balances[split.get("debtor_id")] += split.get("amount");
     });
-    
+
     BT.bills.trigger("newBalances");
   },
 
