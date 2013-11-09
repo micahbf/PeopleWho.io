@@ -68,5 +68,6 @@ BT.Views.NewBillFormView = Backbone.View.extend({
     BT.bills.create(billAttrs);
 
     event.target.reset();
+    this.$splitsDiv.slideUp(200);
   }
 });
