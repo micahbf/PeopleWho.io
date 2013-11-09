@@ -70,4 +70,6 @@ module BillTracker
       g.fixture_replacement :factory_girl, :dir => "spec/factories" 
     end
   end
+
+  config.assets.initialize_on_precompile = false
 end
