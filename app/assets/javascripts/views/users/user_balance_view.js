@@ -54,7 +54,7 @@ BT.Views.UserBalanceView = Backbone.View.extend({
     _.each(updatedUserIds, function (userId) {
       $userTr = $("tr[data-user-id='" + userId + "']");
       $userTr.css({backgroundColor: "yellow"});
-      $userTr.animate({backgroundColor: "white"}, 500);
+      $userTr.animate({backgroundColor: "white"}, 1000);
     });
   }
 });
