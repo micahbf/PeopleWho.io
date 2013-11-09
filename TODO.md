@@ -7,7 +7,6 @@
 - dynamic creation of new users
 - maybe bootstrap ALL user data (like users/show)
 - groups
-- heroku
 - bill view
 - allow entering bills that other people paid
 - add settle button to user show page
