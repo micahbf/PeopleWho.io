@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require jquery.serializeJSON
 //= require jquery.ui.core
+//= require jquery.ui.effect
 //= require bootstrap
 //= require typeahead
 //= require underscore
