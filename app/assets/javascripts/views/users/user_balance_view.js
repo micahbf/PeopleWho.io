@@ -9,7 +9,7 @@ BT.Views.UserBalanceView = Backbone.View.extend({
     "click .settle-btn": "settle"
   },
 
-  render: function () {
+  render: function (updatedUserIds) {
     var owedUsers = [];
     var owingUsers = [];
 
@@ -34,6 +34,7 @@ BT.Views.UserBalanceView = Backbone.View.extend({
     });
 
     this.$el.html(renderedBalances);
+    this._animateUpdatedRows(this.$el, updatedUserIds);
     return this;
   },
 
@@ -46,6 +47,14 @@ BT.Views.UserBalanceView = Backbone.View.extend({
       success: function () {
         $("tr[data-user-id='" + userId + "']").fadeOut();
       }
+    });
+  },
+
+  _animateUpdatedRows: function ($el, updatedUserIds) {
+    _.each(updatedUserIds, function (userId) {
+      $userTr = $("tr[data-user-id='" + userId + "']");
+      $userTr.css({backgroundColor: "yellow"});
+      $userTr.animate({backgroundColor: "white"}, 500);
     });
   }
 });

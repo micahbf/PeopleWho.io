@@ -16,8 +16,11 @@ window.BT = {
   },
 
   recalculateBalances: function(newBill) {
+    var updatedUserIds = [];
     newBill.billSplits.each(function(split) {
       var debtorId = split.get("debtor_id");
+      updatedUserIds.push(debtorId);
+
       if (BT.balances[debtorId] === undefined) {
         BT.balances[debtorId] = split.get("amount");
       } else {
@@ -25,7 +28,7 @@ window.BT = {
       }
     });
 
-    BT.bills.trigger("newBalances");
+    BT.bills.trigger("newBalances", updatedUserIds);
   },
 
   populateUserAutocompletes: function () {
