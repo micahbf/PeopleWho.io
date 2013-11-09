@@ -5,6 +5,8 @@ BT.Views.NewBillFormView = Backbone.View.extend({
 
   events: {
     "click #add-split": "addSplit",
+    "focus .bill-root": "slideDownSplits",
+    "blur .bill-root": "maybeSlideUpSplits",
     "submit form": "submit"
   },
 
@@ -16,8 +18,10 @@ BT.Views.NewBillFormView = Backbone.View.extend({
 
   render: function () {
     var $renderedForm = $(this.template());
+    this.$splitsDiv = $renderedForm.find("#bs-div");
     this.$splitsTable = $renderedForm.find("#bill-splits");
     this.addSplit();
+    this.$splitsDiv.hide();
     this.$el.append($renderedForm);
     this.$el.addClass("panel panel-default");
     return this;
@@ -35,6 +39,16 @@ BT.Views.NewBillFormView = Backbone.View.extend({
 
     this.$splitsTable.find("#bill-form-buttons").before($renderedSplit);
     this.splitCounter += 1;
+  },
+
+  slideDownSplits: function (event) {
+    this.$splitsDiv.slideDown(200);
+  },
+
+  maybeSlideUpSplits: function (event) {
+    if (_.all($('.bill-root'), function (el) { return $(el).val() === ""; })) {
+      this.$splitsDiv.slideUp(200);
+    }
   },
 
   submit: function (event) {
