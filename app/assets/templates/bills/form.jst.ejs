@@ -2,42 +2,46 @@
   Split a bill!
 </div>
 
-<div class="panel-body">
 <form id="new-bill-form">
+  <table class="table">
+    <tr><th class="col-sm-8">For</th><th class="col-sm-4">Total</th></tr>
+    <tr>
+      <td>
+        <div class="input-group" style="width:100%">
+          <input type="text"
+                 id="bill_description"
+                 name="bill[description]"
+                 class="form-control"
+                 placeholder="Dinner">
+        </div>
+      </td>
+      <td>
+        <div class="input-group">
+          <span class="input-group-addon">$</span>
+          <input type="text"
+                 id="bill_total"
+                 name="bill[decimal_total]"
+                 class="form-control"
+                 placeholder="20.00"><br>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <div id="bs-div">
+  <table class="table" id="bill-splits">
+    <tr><th class="col-sm-8">With</th><th class="col-sm-4">Amount</th></tr>
+    <tr id="bill-form-buttons">
+      <td colspan="2">
+        <input type="button"
+               class="btn btn-info pull-left"
+               id="add-split"
+               value="Add a split">
 
-  <div class="row">
-  <div class="col-md-8">
-    <div class="input-group">
-      <label for="bill_description" class="control-label">For: </label>
-        <input type="text"
-               id="bill_description"
-               name="bill[description]"
-               class="form-control"
-               placeholder="Dinner">
-    </div>
-    </div>
-    <div class="col-md-4">
-    <div class="input-group">
-        <label for="bill_total" class="control-label">Total:</label>
-        <span class="input-group-addon">$</span>
-        <input type="text"
-               id="bill_total"
-               name="bill[decimal_total]"
-               class="form-control"
-               placeholder="20.00"><br>
-    </div>
-    </div>
+        <input type="submit"
+               class="btn btn-primary pull-right"
+               value="Split it!">
+      </td>
+    </tr>
+  </table>
   </div>
-
-    <div id="bill-splits">Split with:<br></div>
-
-    <input type="button"
-           class="btn btn-info"
-           id="add-split"
-           value="Add a split">
-
-    <input type="submit"
-           class="btn btn-primary"
-           value="Split it!">
-  </form>
-</div>
+</form>

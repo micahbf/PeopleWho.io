@@ -16,7 +16,7 @@ BT.Views.NewBillFormView = Backbone.View.extend({
 
   render: function () {
     var $renderedForm = $(this.template());
-    this.$splitsDiv = $renderedForm.find("#bill-splits");
+    this.$splitsTable = $renderedForm.find("#bill-splits");
     this.addSplit();
     this.$el.append($renderedForm);
     this.$el.addClass("panel panel-default");
@@ -33,7 +33,7 @@ BT.Views.NewBillFormView = Backbone.View.extend({
       local: BT.userAutocompletes
     });
 
-    this.$splitsDiv.append($renderedSplit);
+    this.$splitsTable.find("#bill-form-buttons").before($renderedSplit);
     this.splitCounter += 1;
   },
 
