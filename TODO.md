@@ -12,3 +12,4 @@
 - allow entering bills that other people paid
 - add settle button to user show page
 - make sure user show page dynamically updates
+- animate updates to balances table
