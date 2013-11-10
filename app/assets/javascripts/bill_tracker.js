@@ -24,7 +24,7 @@ window.BT = {
       if (BT.balances[debtorId] === undefined) {
         BT.balances[debtorId] = split.get("amount");
       } else {
-        BT.balances[split.get("debtor_id")] += split.get("amount");
+        BT.balances[debtorId] += split.get("amount");
       }
     });
 
