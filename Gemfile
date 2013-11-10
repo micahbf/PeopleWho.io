@@ -5,6 +5,7 @@ gem 'rails', '3.2.14'
 
 gem 'backbone-on-rails'
 gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'font-awesome-sass'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'ejs'
