@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :name, :password
+  attr_accessible :email, :name, :password, :is_stub
   has_secure_password
+
+  before_validation :default_is_stub_to_false
 
   validates :email, presence: true, uniqueness: true
   validates :password, length: { minimum: 6 }, allow_nil: true
@@ -21,6 +23,16 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.new_stub(email)
+    stub_password = SecureRandom.urlsafe_base64(16)
+    User.new({email: email, is_stub: true, password: stub_password})
+  end
+
+  def self.create_stub!(email)
+    stub_password = SecureRandom.urlsafe_base64(16)
+    User.create!({email: email, is_stub: true, password: stub_password})
+  end    
+
   def self.generate_session_token
     SecureRandom.urlsafe_base64
   end
@@ -32,6 +44,10 @@ class User < ActiveRecord::Base
 
   def display_name
     self.name || self.email
+  end
+
+  def stub?
+    self.is_stub
   end
 
   def user_ids_with_outstanding_balance
@@ -94,5 +110,10 @@ class User < ActiveRecord::Base
 
   def ensure_session_token
     self.session_token ||= self.class.generate_session_token
+  end
+
+  def default_is_stub_to_false
+    self.is_stub ||= false
+    true
   end
 end
