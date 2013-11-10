@@ -1,5 +1,5 @@
 class BillSplit < ActiveRecord::Base
-  attr_accessible :amount, :bill_id, :debtor_id, :decimal_amount
+  attr_accessible :amount, :bill_id, :debtor_id, :debtor_email, :decimal_amount
 
   validates :amount, :bill, :debtor, presence: true
   validates :amount, numericality: { only_integer: true }
@@ -33,8 +33,18 @@ class BillSplit < ActiveRecord::Base
     end
   end
 
-  def decimal_amount= (decimal)
+  def decimal_amount=(decimal)
     self.amount = Utilities::decimal_to_int(decimal)
+  end
+
+  def debtor_email=(email)
+    user = User.find_by_email(email)
+    if user
+      self.debtor_id = user.id
+    else
+      user = User.create_stub!(email)
+      self.debtor_id = user.id
+    end
   end
 
   private
