@@ -1,14 +1,15 @@
-- write more model specs
+- dynamic creation of new users
+- email notifications
+- add settle button to user show page
+- groups
 - associated users
-- facebook integration
+- write readme
+- allow entering bills that other people paid
+- bill view
 - currency api
+- facebook integration
 - photo uploads
 - prevent users from seeing bills they are not associated with
-- dynamic creation of new users
-- maybe bootstrap ALL user data (like users/show)
-- groups
-- bill view
-- allow entering bills that other people paid
-- add settle button to user show page
 - make sure user show page dynamically updates
-- email notifications
+- write more model specs
+- maybe bootstrap ALL user data (like users/show)
