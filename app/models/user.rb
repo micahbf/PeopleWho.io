@@ -12,7 +12,13 @@ class User < ActiveRecord::Base
   has_many :debt_splits, class_name: "BillSplit", foreign_key: :debtor_id
 
   def self.find_by_credentials(email, password)
-    return self.find_by_email(email).authenticate(password)
+    user = self.find_by_email(email)
+
+    if user && user.authenticate(password)
+      return user
+    else
+      return nil
+    end
   end
 
   def self.generate_session_token
