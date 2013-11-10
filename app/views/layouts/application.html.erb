@@ -13,9 +13,9 @@
   </div>
 <% if !current_user.nil? %>
   <ul class="nav navbar-nav navbar-right">
-    <li class="navbar-text">Logged in as: <%= current_user.email %></li>
+    <li class="navbar-text"><i class="fa fa-user"></i> <%= current_user.email %></li>
     <li><%= button_to "Logout", session_url,
-            method: :delete, class: "btn btn-warning navbar-btn" %></li>
+            method: :delete, class: "btn navbar-btn" %></li>
   </ul>
 <% end %>
 </nav>
