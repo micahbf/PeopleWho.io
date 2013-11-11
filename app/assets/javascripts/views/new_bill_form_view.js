@@ -87,7 +87,6 @@ BT.Views.NewBillFormView = Backbone.View.extend({
           });
         }
 
-        debugger;
         BT.bills.add(bill);
         BT.recalculateBalances(bill);
       }
