@@ -120,10 +120,9 @@ class Bill < ActiveRecord::Base
 
     return [base_split_amount] * num_splits if base_remainder == 0
 
-    extra_cents = []
-    base_remainder.times { extra_cents << 1 }
-    (num_splits - base_remainder).times { extra_cents << 0 }
-
-    extra_cents.shuffle.map { |a| a += base_split_amount }
+    [].tap do |extra_cents|
+      base_remainder.times { extra_cents << 1 }
+      (num_splits - base_remainder).times { extra_cents << 0 }
+    end.shuffle.map { |a| a += base_split_amount }
   end
 end
