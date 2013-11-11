@@ -49,7 +49,7 @@ window.BT = {
 };
 
 $(document).ready(function(){
-  if (!NO_BACKBONE) {
+  if (typeof NO_BACKBONE === 'undefined' || !NO_BACKBONE) {
     BT.initialize();
   }
 });
