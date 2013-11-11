@@ -1,6 +1,5 @@
 - email notifications
 - demo account
-- add settle button to user show page
 - error rendering
 - groups
 - associated users
