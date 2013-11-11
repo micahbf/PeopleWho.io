@@ -15,6 +15,11 @@ class Api::UserGroupsController < ApplicationController
     render json: @group, methods: [:user_ids]
   end
 
+  def index
+    @groups = current_user.groups.includes(:user_group_memberships).all
+    render json: @groups, methods: [:user_ids]
+  end
+
   def update
     @group = UserGroup.find(params[:id])
     @group.update_attributes(params[:user_group])
