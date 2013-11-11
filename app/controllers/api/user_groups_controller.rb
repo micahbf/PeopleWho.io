@@ -16,8 +16,8 @@ class Api::UserGroupsController < ApplicationController
   end
 
   def index
-    @groups = current_user.groups.includes(:user_group_memberships).all
-    render json: @groups, methods: [:user_ids]
+    @groups = current_user.groups.includes(:user_group_memberships, :bills).all
+    render json: @groups, include: [:bills], methods: [:user_ids]
   end
 
   def update
