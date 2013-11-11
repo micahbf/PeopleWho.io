@@ -27,6 +27,7 @@ BT.Models.User = Backbone.Model.extend({
     });
 
     this.set({ balance: 0 });
+    delete BT.balances[this.id];
 
     $.ajax({
       url: "/api/users/" + this.id + "/settle",
