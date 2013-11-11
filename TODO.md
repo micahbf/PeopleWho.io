@@ -1,5 +1,4 @@
 - email notifications
-- landing page
 - demo account
 - add settle button to user show page
 - error rendering
