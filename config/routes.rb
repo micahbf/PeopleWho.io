@@ -15,7 +15,7 @@ BillTracker::Application.routes.draw do
     end
     resources :bills, only: [:create, :show, :index]
     resources :groups, only: [:create, :show, :update, :index],
-                 controller: "api/user_groups"
+                 controller: :user_groups
   end
 
   root to: "static_pages#root"
