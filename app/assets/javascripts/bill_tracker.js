@@ -4,10 +4,13 @@ window.BT = {
   Views: {},
   Routers: {},
   initialize: function() {
-    var bootstrap_data = JSON.parse($('#users_index_bootstrap').html());
-    BT.users = new BT.Collections.Users(bootstrap_data.users);
-    BT.balances = bootstrap_data.balances;
+    var bootstrap_users = JSON.parse($('#users_index_bootstrap').html());
+    var bootstrap_groups = JSON.parse($('#groups_bootstrap').html());
+
+    BT.users = new BT.Collections.Users(bootstrap_users.users);
+    BT.balances = bootstrap_users.balances;
     BT.bills = new BT.Collections.Bills();
+    BT.groups = bootstrap_groups;
 
     new BT.Routers.AppRouter($('#content'));
     Backbone.history.start();
