@@ -64,6 +64,10 @@ class Bill < ActiveRecord::Base
     total - bill_split_sum
   end
 
+  def in_group?
+    !! self.group_id
+  end
+
   private
 
   def total_greater_than_num_bill_splits
