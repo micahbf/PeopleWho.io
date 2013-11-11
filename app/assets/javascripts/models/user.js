@@ -11,5 +11,29 @@ BT.Models.User = Backbone.Model.extend({
 
   parse: function(serverAttrs) {
     return serverAttrs.user;
+  },
+
+  settle: function (successCallback, callbackBinding) {
+    var self = this;
+
+    this.attributes.bill_splits.unshift({
+      amount: this.get("balance"),
+      debtor_id: CURRENT_USER_ID,
+      bill: {
+        total: this.get("balance"),
+        settling: true,
+        created_at: moment().toISOString()
+      }
+    });
+
+    this.set({ balance: 0 });
+
+    $.ajax({
+      url: "/api/users/" + this.id + "/settle",
+      type: "post",
+      success: function () {
+        successCallback.call(callbackBinding, self);
+      }
+    });
   }
 });
