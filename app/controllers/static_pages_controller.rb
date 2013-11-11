@@ -6,7 +6,7 @@ class StaticPagesController < ApplicationController
       @users_with_balances = current_user.user_ids_with_outstanding_balance
       render :root
     else
-      redirect_to new_session_url
+      render :landing
     end
   end
 end

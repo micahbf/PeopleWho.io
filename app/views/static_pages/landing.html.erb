@@ -1,0 +1,60 @@
+<div class="jumbotron">
+  <h1>Easily share expenses with friends.</h1>
+  <div class="row thumbnails">
+    <div class="col-md-4">
+      <div class="thumbnail">
+        <div class="text-center">
+          <i class="fa fa-cutlery fa-5x"></i>
+        </div>
+        <div class="caption">
+          <h3>Split bills for food or drinks</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="thumbnail">
+        <div class="text-center">
+          <i class="fa fa-home fa-5x"></i>
+        </div>
+        <div class="caption">
+          <h3>Track living expenses with roommates</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="thumbnail">
+        <div class="text-center">
+          <i class="fa fa-plane fa-5x"></i>
+        </div>
+        <div class="caption">
+          <h3>Tally expenses on trips and vacations</h3>
+        </div>
+      </div>
+    </div>
+  </div>       
+</div>
+
+<script>
+  NO_BACKBONE = true;
+
+  (function($) {
+      $.fn.uniformHeight = function() {
+          var maxHeight = 0
+
+          this.each(function() {
+              console.log([$(this), $(this).height()])
+              if ($(this).height() > maxHeight) { maxHeight = $(this).height(); }
+          })
+
+          maxHeight += 15; // padding
+
+          this.each(function () {
+            $(this).height(maxHeight);
+          })
+      }
+  })(jQuery);
+
+  $(document).ready(function () {
+    $(".thumbnails").find(".thumbnail").uniformHeight();
+  });
+</script>
