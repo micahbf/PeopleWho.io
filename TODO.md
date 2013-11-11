@@ -1,4 +1,3 @@
-- dynamic creation of new users
 - email notifications
 - landing page
 - demo account
