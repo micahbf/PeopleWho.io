@@ -1,0 +1,8 @@
+<div class="panel-heading">Your groups</div>
+<div class="panel-body">
+  <ul>
+    <% groups.each(function (group) { %>
+      <li><a href="#/groups/<%= group.id %>"><%= group.escape("name") %></a></li>
+    <% }) %>
+  </ul>
+</div>
