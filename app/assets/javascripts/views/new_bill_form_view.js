@@ -32,9 +32,8 @@ BT.Views.NewBillFormView = Backbone.View.extend({
       splitNum: this.splitCounter
     }));
 
-    $renderedSplit.find(".user-autocomplete").typeahead({
-      name: 'users',
-      local: BT.userAutocompletes
+    $renderedSplit.find(".user-autocomplete").autocomplete({
+      source: BT.userAutocompletes
     });
 
     this.$splitsTable.find("#bill-form-buttons").before($renderedSplit);
