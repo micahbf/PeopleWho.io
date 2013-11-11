@@ -9,8 +9,6 @@ window.BT = {
     BT.balances = bootstrap_data.balances;
     BT.bills = new BT.Collections.Bills();
 
-    BT.bills.on("sync", this.recalculateBalances, this);
-
     new BT.Routers.AppRouter($('#content'));
     Backbone.history.start();
   },
