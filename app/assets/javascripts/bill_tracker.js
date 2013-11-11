@@ -49,5 +49,7 @@ window.BT = {
 };
 
 $(document).ready(function(){
-  BT.initialize();
+  if (!NO_BACKBONE) {
+    BT.initialize();
+  }
 });
