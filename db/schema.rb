@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131111214301) do
+ActiveRecord::Schema.define(:version => 20131111220017) do
 
   create_table "bill_splits", :force => true do |t|
     t.integer  "bill_id",    :null => false
@@ -31,8 +31,10 @@ ActiveRecord::Schema.define(:version => 20131111214301) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.boolean  "settling"
+    t.integer  "group_id"
   end
 
+  add_index "bills", ["group_id"], :name => "index_bills_on_group_id"
   add_index "bills", ["owner_id"], :name => "index_bills_on_owner_id"
 
   create_table "user_group_memberships", :force => true do |t|
