@@ -4,6 +4,7 @@ class StaticPagesController < ApplicationController
       @current_user_id = current_user.id
       @users = User.all
       @users_with_balances = current_user.user_ids_with_outstanding_balance
+      @groups = current_user.groups.includes(:user_group_memberships)
       render :root
     else
       render :landing

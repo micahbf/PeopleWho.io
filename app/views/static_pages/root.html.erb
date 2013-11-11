@@ -8,3 +8,7 @@
   <%= j(Rabl::Renderer.json(@users, 'users/_only_users', locals: { users: @users }))[0...-1].html_safe %>, 
   <%= j({ balances: @users_with_balances }.to_json)[1..-1].html_safe %>
 </script>
+
+<script id="groups_bootstrap" type="application/json">
+  <%= j(@groups.to_json(methods: :user_ids)).html_safe %>
+</script>
