@@ -33,6 +33,10 @@ BT.Routers.AppRouter = Backbone.Router.extend({
   _initLayout: function() {
     var rootView = new BT.Views.RootView();
     this.$rootEl.html(rootView.render().$el);
+
+    var groupsPanelView = new BT.Views.GroupsPanelView();
+    $groupsPanel = this.$rootEl.find('#groups-panel');
+    $groupsPanel.html(groupsPanelView.render().$el);
   },
 
   _swapMain: function(newView) {
