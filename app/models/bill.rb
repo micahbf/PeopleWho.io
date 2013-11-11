@@ -4,9 +4,11 @@ class Bill < ActiveRecord::Base
                   :total,
                   :decimal_total,
                   :bill_splits_attributes,
-                  :settling
+                  :settling,
+                  :group_id
 
   before_validation :default_settling_to_false
+  before_save :maybe_split_with_group
 
   validates :owner, :total, presence: true
   validates :total, numericality: { only_integer: true }
@@ -17,6 +19,7 @@ class Bill < ActiveRecord::Base
   validate :settling_has_exactly_one_split
 
   belongs_to :owner, class_name: "User"
+  belongs_to :group, class_name: "UserGroup"
 
   has_many :bill_splits, inverse_of: :bill
   accepts_nested_attributes_for :bill_splits
@@ -92,5 +95,31 @@ class Bill < ActiveRecord::Base
     # Returning false will halt the validation chain,
     # so true is returned to ensure its continuation
     true
+  end
+
+  def maybe_split_with_group
+    if self.group
+      members = self.group.users.all
+      split_amounts = randomized_split_amounts(self.total, members.count)
+
+      split_attrs_array = members.map do |member|
+        { amount: split_amounts.pop, debtor_id: member.id }
+      end
+
+      self.bill_splits.build(split_attrs_array)
+    end
+  end
+
+  def randomized_split_amounts(total, num_splits)
+    base_split_amount = total / num_splits
+    base_remainder = total % num_splits
+
+    return [base_split_amount] * num_splits if base_remainder == 0
+
+    extra_cents = []
+    base_remainder.times { extra_cents << 1 }
+    (num_splits - base_remainder).times { extra_cents << 0 }
+
+    extra_cents.shuffle.map { |a| a += base_split_amount }
   end
 end
