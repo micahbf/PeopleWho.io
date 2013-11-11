@@ -53,21 +53,44 @@ BT.Views.NewBillFormView = Backbone.View.extend({
 
   submit: function (event) {
     event.preventDefault();
+    var self = this;
     var billAttrs = $(event.target).serializeJSON();
+    var syncUsers = false;
 
     _.each(billAttrs.bill.bill_splits_attributes, function (splitAttrs) {
       var user = BT.users.find(function (user) {
         return (user.get("email") === splitAttrs.debtor_ident ||
                 user.get("name") === splitAttrs.debtor_ident);
       });
-      splitAttrs.debtor_id = user.id;
+
+      if (user === undefined) {
+        user = new BT.Models.User({email: splitAttrs.debtor_ident});
+        splitAttrs.debtor_email = splitAttrs.debtor_ident;
+        syncUsers = true;
+      } else {
+        splitAttrs.debtor_id = user.id;
+      }
+
       delete splitAttrs.debtor_ident;
     });
 
     var bill = new BT.Models.Bill();
-    BT.bills.create(billAttrs);
+    bill.save(billAttrs, {
+      success: function () {
+        if (syncUsers) {
+          event.target.reset();
+          self.$splitsDiv.slideUp(200);
 
-    event.target.reset();
-    this.$splitsDiv.slideUp(200);
+          BT.users.fetch({
+            reset: true,
+            async: false
+          });
+        }
+
+        debugger;
+        BT.bills.add(bill);
+        BT.recalculateBalances(bill);
+      }
+    });
   }
 });
