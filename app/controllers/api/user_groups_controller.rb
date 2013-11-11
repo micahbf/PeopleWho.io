@@ -12,7 +12,7 @@ class Api::UserGroupsController < ApplicationController
 
   def show
     @group = UserGroup.find(params[:id])
-    render json: @group, methods: [:user_ids]
+    render json: @group, include: [:bills], methods: [:user_ids]
   end
 
   def index
