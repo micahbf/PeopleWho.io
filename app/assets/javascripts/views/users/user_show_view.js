@@ -20,13 +20,8 @@ BT.Views.UserShowView = Backbone.View.extend({
 
   settle: function (event) {
     event.preventDefault();
-    var userId = $(event.target).data("user-id");
-    $.ajax({
-      url: "/api/users/" + userId + "/settle",
-      type: "post",
-      success: function () {
-        $("tr[data-user-id='" + userId + "']").fadeOut();
-      }
-    });
+    var user = BT.users.get($(event.target).data("user-id"));
+    user.settle();
+    this.render();
   }
 });
