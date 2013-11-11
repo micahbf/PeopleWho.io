@@ -15,8 +15,8 @@
 //= require jquery.serializeJSON
 //= require jquery.ui.core
 //= require jquery.ui.effect
+//= require jquery.ui.autocomplete
 //= require bootstrap
-//= require typeahead
 //= require underscore
 //= require backbone
 //= require moment-with-langs.min
