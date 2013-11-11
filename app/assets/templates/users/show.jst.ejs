@@ -6,7 +6,7 @@
   <% } else if (user.get("balance") === 0) { %>
     You're even steven!
   <% } else { %>
-    They owe you $<%= BT.int_to_dec(user.get("balance")) %>
+    They owe you $<%= BT.int_to_dec(user.get("balance")) %> <button class="settle-btn btn btn-info pull-right" data-user-id="<%= user.id %>"><i class="fa fa-check"></i> settle</button>
   <% } %>
 </h3>
 
