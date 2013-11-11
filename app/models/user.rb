@@ -13,6 +13,9 @@ class User < ActiveRecord::Base
   has_many :paid_bills, class_name: "Bill", foreign_key: :owner_id
   has_many :debt_splits, class_name: "BillSplit", foreign_key: :debtor_id
 
+  has_many :user_group_memberships
+  has_many :groups, through: :user_group_memberships
+
   def self.find_by_credentials(email, password)
     user = self.find_by_email(email)
 
