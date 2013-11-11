@@ -14,8 +14,9 @@
 <% if !current_user.nil? %>
   <ul class="nav navbar-nav navbar-right">
     <li class="navbar-text"><i class="fa fa-user"></i> <%= current_user.email %></li>
-    <li><%= button_to "Logout", session_url,
-            method: :delete, class: "btn navbar-btn" %></li>
+    <li>
+      <form action="<%= session_url %>" method="post"><input name="_method" type="hidden" value="delete"><button class="btn navbar-btn" type="submit"><i class="fa fa-sign-out fa-lg"></i></button></form>
+    </li>
   </ul>
 <% end %>
 </nav>
