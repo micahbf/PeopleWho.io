@@ -1,5 +1,5 @@
 <h3>People You Owe</h3>
-<table class="table table-striped">
+<table class="table table-striped table-hover">
   <tr><th class="col-sm-6">User</th><th class="col-sm-4">Amount</th><th class="col-sm-2"></tr>
   <% _.each(owedUsers, function(userBal) { %>
     <tr data-user-id="<%= userBal.user.id %>">
@@ -15,7 +15,7 @@
 </table>
 
 <h3>People Who Owe You</h3>
-<table class="table table-striped">
+<table class="table table-striped table-hover">
   <tr><th class="col-sm-6">User</th><th class="col-sm-4">Amount</th><th class="col-sm-2"> </th></tr>
   <% _.each(owingUsers, function(userBal) { %>
     <tr data-user-id="<%= userBal.user.id %>">
