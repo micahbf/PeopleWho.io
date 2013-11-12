@@ -1,0 +1,13 @@
+<h2><%= escape(group.name) %></h2>
+<h3>Members: <%= displayNames.join(", ") %></h3>
+<button class="btn btn-danger" id="leave-group-btn">Leave group</button>
+<h3>Recently split bills</h3>
+<table class="table table-condensed">
+  <% bills.each(function (bill) { %>
+    <tr>
+      <td><%= moment(bill.created_at).format("D.MMM.YY") %></td>
+      <td><%= bill.escape("description") %></td>
+      <td><%= BT.int_to_dec(bill.get("total")) %></td>
+    </tr>
+  <% }) %>
+</table>
