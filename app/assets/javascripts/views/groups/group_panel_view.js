@@ -21,11 +21,23 @@ BT.Views.GroupsPanelView = Backbone.View.extend({
     var $newGroupLi, $nameInput;
     event.preventDefault();
 
-    $newGroupLi = $("<li class='list-group-item'></li>");
+    $newGroupLi = $("<li class='list-group-item new-group'></li>");
     $nameInput = $("<input type='text' id='new-group-name' class='form-control'>");
     $newGroupLi.append($nameInput);
 
     this.$el.find(".list-group").append($newGroupLi);
     $nameInput.focus();
+  },
+
+  createNewGroup: function(event) {
+    var newGroupName = $(event.target).val();
+    if (newGroupName !== "") {
+      var newGroup = BT.groups.create({ name: newGroupName });
+      this.render();
+    } else {
+      this.$el.find(".new-group").remove();
+    }
+
+
   }
 });
