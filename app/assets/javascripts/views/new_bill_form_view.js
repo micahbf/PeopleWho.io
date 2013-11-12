@@ -65,7 +65,7 @@ BT.Views.NewBillFormView = Backbone.View.extend({
       });
 
       if (user === undefined) {
-        group = _.findWhere(BT.groups, { name: splitAttrs.debtor_ident });
+        group = BT.groups.findWhere({ name: splitAttrs.debtor_ident });
       }
 
       if (user !== undefined) {
