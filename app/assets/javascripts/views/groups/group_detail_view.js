@@ -1,6 +1,11 @@
 BT.Views.GroupDetailView = Backbone.View.extend({
   template: JST['groups/detail'],
 
+  events: {
+    "click #leave-group-btn": "leaveGroup",
+    "click #add-new-member-btn": "addNewMemberForm"
+  },
+
   render: function () {
     var users = _.map(this.model.get("user_ids"), function (user_id) {
       return BT.users.get(user_id);
