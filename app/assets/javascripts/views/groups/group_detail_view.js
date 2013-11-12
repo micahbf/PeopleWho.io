@@ -33,5 +33,23 @@ BT.Views.GroupDetailView = Backbone.View.extend({
     $newMemberInput = $("<input type='text' id='new-member-input' placeholder='name or email'>");
     this.$el.find("#add-new-member-btn").before($newMemberInput);
     $newMemberInput.focus();
+  },
+
+  addNewMember: function(event) {
+    event.preventDefault();
+    var currentMemberIds = this.model.get("user_ids");
+    var newMemberIdent = $(event.target).val();
+
+    var user = BT.users.find(function (user) {
+      return (user.get("email") === newMemberIdent ||
+              user.get("name") === newMemberIdent);
+    });
+
+    if (user !== undefined) {
+      currentMemberIds.push(user.id);
+      this.model.set("user_ids", currentMemberIds);
+      this.model.save();
+      this.render();
+    }
   }
 });
