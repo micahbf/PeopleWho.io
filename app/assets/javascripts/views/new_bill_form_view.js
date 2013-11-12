@@ -55,23 +55,34 @@ BT.Views.NewBillFormView = Backbone.View.extend({
     var self = this;
     var billAttrs = $(event.target).serializeJSON();
     var syncUsers = false;
+    var isGroupSplit = false;
 
     _.each(billAttrs.bill.bill_splits_attributes, function (splitAttrs) {
+      var group;
       var user = BT.users.find(function (user) {
         return (user.get("email") === splitAttrs.debtor_ident ||
                 user.get("name") === splitAttrs.debtor_ident);
       });
 
       if (user === undefined) {
+        group = _.findWhere(BT.groups, { name: splitAttrs.debtor_ident });
+      }
+
+      if (user !== undefined) {
+        splitAttrs.debtor_id = user.id;
+      } else if (group !== undefined) {
+        billAttrs.bill.group_id = group.id;
+        isGroupSplit = true;
+      } else {        
         user = new BT.Models.User({email: splitAttrs.debtor_ident});
         splitAttrs.debtor_email = splitAttrs.debtor_ident;
         syncUsers = true;
-      } else {
-        splitAttrs.debtor_id = user.id;
       }
 
       delete splitAttrs.debtor_ident;
     });
+
+    if (isGroupSplit) { delete billAttrs.bill.bill_splits_attributes; }
 
     var bill = new BT.Models.Bill();
     bill.save(billAttrs, {
