@@ -6,7 +6,8 @@ BT.Routers.AppRouter = Backbone.Router.extend({
 
   routes: {
     "": "showBalances",
-    "users/:id": "showUser"
+    "users/:id": "showUser",
+    "groups/:id": "showGroup"
   },
 
   showBalances: function (id) {
@@ -26,6 +27,22 @@ BT.Routers.AppRouter = Backbone.Router.extend({
         });
 
         self._swapMain(userView);
+      }
+    });
+  },
+
+  showGroup: function (id) {
+    var self = this;
+    var group = BT.groups.get(id);
+    var groupView;
+
+    group.fetch({
+      success: function () {
+        groupView = new BT.Views.GroupDetailView({
+          model: self
+        });
+
+        self._swapMain(groupView);
       }
     });
   },
