@@ -1,6 +1,6 @@
 <div class="panel-heading">Your groups <a href="#" class="pull-right" id="new-group-btn"><i class="fa fa-plus"></i></a></div>
 <div class="list-group">
   <% groups.each(function (group) { %>
-    <a href="#/groups/<%= group.id %>" class="list-group-item"><%= group.escape("name") %></a>
+    <a href="#/groups/<%= group.id || group.cid %>" class="list-group-item"><%= group.escape("name") %></a>
   <% }) %>
 </div>
