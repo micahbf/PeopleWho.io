@@ -22,6 +22,9 @@ class Bill < ActiveRecord::Base
 
   belongs_to :owner, class_name: "User"
   belongs_to :group, class_name: "UserGroup"
+  belongs_to :original_currency, class_name: "Currency",
+                                 foreign_key: :orig_currency_code,
+                                 primary_key: :code
 
   has_many :bill_splits, inverse_of: :bill
   accepts_nested_attributes_for :bill_splits
