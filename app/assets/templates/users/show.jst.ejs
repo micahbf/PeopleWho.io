@@ -18,12 +18,19 @@
       <td>
         <% if(split.bill.settling) { %>
           <span class="text-info"><i class="fa fa-check-circle fa-fw"></i> Settled up!</span>
-        <% } else if (type === "debit") { %>
-          <span class="text-danger"><i class="fa fa-arrow-circle-left fa-fw"></i></span> 
-          <%= split.bill.description %>
         <% } else { %>
-          <span class="text-success"><i class="fa fa-arrow-circle-right fa-fw"></i></span> 
-          <%= split.bill.description %>        
+          <% if (type === "debit") { %>
+            <span class="text-danger"><i class="fa fa-arrow-circle-left fa-fw"></i></span> 
+          <% } else { %>
+            <span class="text-success"><i class="fa fa-arrow-circle-right fa-fw"></i></span>
+          <% } %>
+          <% if (split.bill.group_id) { %>
+            <% var group = _.findWhere(BT.groups, { id: split.bill.group_id }) %>
+            <span class="label label-primary"><%= group.name %></span>
+          <% } %>
+          <%= split.bill.description %>
+          
+
         <% } %>
       </td>
       <td><% if (type === "debit") { %>-<% } %>$<%= BT.int_to_dec(split.amount) %></td>
