@@ -1,7 +1,6 @@
 - email notifications
 - demo account
 - error rendering
-- groups
 - associated users
 - write readme
 - allow entering bills that other people paid
