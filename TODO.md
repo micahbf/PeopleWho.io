@@ -13,3 +13,4 @@
 - make sure user show page dynamically updates
 - write more model specs
 - maybe bootstrap ALL user data (like users/show)
+- split bill form on group show page should split with group
