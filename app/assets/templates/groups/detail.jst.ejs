@@ -1,6 +1,6 @@
 <h2><%= group.escape("name") %></h2>
-<h3>Members: <%= displayNames.join(", ") %></h3>
-<button class="btn btn-danger" id="leave-group-btn">Leave group</button>
+<h4>Members: <%= displayNames.join(", ") %></h4>
+<button class="btn btn-danger btn-xs" id="leave-group-btn">Leave group</button>
 <h3>Recently split bills</h3>
 <table class="table table-condensed">
   <% bills.each(function (bill) { %>
