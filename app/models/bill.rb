@@ -104,9 +104,11 @@ class Bill < ActiveRecord::Base
   def maybe_split_with_group
     if self.group
       members = self.group.users.all
+      other_members = members.reject { |m| m.id == self.owner_id }
+
       split_amounts = randomized_split_amounts(self.total, members.count)
 
-      split_attrs_array = members.map do |member|
+      split_attrs_array = other_members.map do |member|
         { amount: split_amounts.pop, debtor_id: member.id }
       end
 
