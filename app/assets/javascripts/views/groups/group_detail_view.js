@@ -3,7 +3,8 @@ BT.Views.GroupDetailView = Backbone.View.extend({
 
   events: {
     "click #leave-group-btn": "leaveGroup",
-    "click #add-new-member-btn": "addNewMemberForm"
+    "click #add-new-member-btn": "addNewMemberForm",
+    "blur #new-member-input": "addNewMember"
   },
 
   render: function () {
@@ -24,5 +25,13 @@ BT.Views.GroupDetailView = Backbone.View.extend({
 
     this.$el.html(renderedContent);
     return this;
+  },
+
+  addNewMemberForm: function(event) {
+    event.preventDefault();
+
+    $newMemberInput = $("<input type='text' id='new-member-input' placeholder='name or email'>");
+    this.$el.find("#add-new-member-btn").before($newMemberInput);
+    $newMemberInput.focus();
   }
 });
