@@ -32,6 +32,7 @@ BT.Views.GroupDetailView = Backbone.View.extend({
 
     $newMemberInput = $("<input type='text' id='new-member-input' placeholder='name or email'>");
     this.$el.find("#add-new-member-btn").before($newMemberInput);
+    $newMemberInput.autocomplete({ source: BT.userAutocompletes });
     $newMemberInput.focus();
   },
 
