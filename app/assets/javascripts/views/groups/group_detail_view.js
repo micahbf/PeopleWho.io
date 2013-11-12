@@ -2,7 +2,7 @@ BT.Views.GroupDetailView = Backbone.View.extend({
   template: JST['groups/detail'],
 
   render: function () {
-    var users = _.map(this.model.user_ids, function (user_id) {
+    var users = _.map(this.model.get("user_ids"), function (user_id) {
       return BT.users.get(user_id);
     });
 
