@@ -25,8 +25,8 @@
             <span class="text-success"><i class="fa fa-arrow-circle-right fa-fw"></i></span>
           <% } %>
           <% if (split.bill.group_id) { %>
-            <% var group = _.findWhere(BT.groups, { id: split.bill.group_id }) %>
-            <span class="label label-primary"><%= group.name %></span>
+            <% var group = BT.groups.get(split.bill.group_id) %>
+            <span class="label label-primary"><%= group.escape("name") %></span>
           <% } %>
           <%= split.bill.description %>
         <% } %>
