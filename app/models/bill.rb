@@ -9,6 +9,7 @@ class Bill < ActiveRecord::Base
                   :orig_currency_code,
                   :orig_currency_total
 
+  before_validation :perform_currency_conversion, on: :create
   before_validation :default_settling_to_false
   before_save :maybe_split_with_group
 
@@ -131,5 +132,19 @@ class Bill < ActiveRecord::Base
       base_remainder.times { extra_cents << 1 }
       (num_splits - base_remainder).times { extra_cents << 0 }
     end.shuffle.map { |a| a += base_split_amount }
+  end
+
+  def perform_currency_conversion
+    self.orig_currency_code ||= 'USD'
+    self.orig_currency_total ||= self.total
+
+    if (self.orig_currency_code != 'USD')
+      orig_currency = Currency.find_by_code(orig_currency_code)
+      self.total = (self.orig_currency_total.to_f / orig_currency.rate).round
+
+      self.bill_splits.each do |bill_split|
+        bill_split.amount = (bill_split.amount.to_f / orig_currency.rate).round
+      end
+    end
   end
 end
