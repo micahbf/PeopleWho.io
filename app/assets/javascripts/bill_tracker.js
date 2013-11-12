@@ -10,7 +10,7 @@ window.BT = {
     BT.users = new BT.Collections.Users(bootstrap_users.users);
     BT.balances = bootstrap_users.balances;
     BT.bills = new BT.Collections.Bills();
-    BT.groups = bootstrap_groups;
+    BT.groups = new BT.Collections.Groups(bootstrap_groups);
 
     new BT.Routers.AppRouter($('#content'));
     Backbone.history.start();
