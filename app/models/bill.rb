@@ -5,7 +5,9 @@ class Bill < ActiveRecord::Base
                   :decimal_total,
                   :bill_splits_attributes,
                   :settling,
-                  :group_id
+                  :group_id,
+                  :orig_currency_code,
+                  :orig_currency_total
 
   before_validation :default_settling_to_false
   before_save :maybe_split_with_group

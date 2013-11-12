@@ -13,7 +13,7 @@ class Currency < ActiveRecord::Base
   end
 
   def self.names_list
-    if (@@currency_list)
+    if (defined?(@@currency_list))
       return @@currency_list
     else
       @@currency_index ||= CurrencyIndex.new
