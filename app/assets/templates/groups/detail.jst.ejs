@@ -2,7 +2,12 @@
 <h4>Members: <%= displayNames.join(", ") %></h4>
 <button class="btn btn-danger btn-xs" id="leave-group-btn">Leave group</button>
 <h3>Recently split bills</h3>
-<table class="table table-condensed">
+<table class="table table-condensed table-striped">
+  <tr>
+    <th class="col-md-2">Date</th>
+    <th class="col-md-7">Bill</th>
+    <th class="col-md-3">Total</th>
+  </tr>
   <% bills.each(function (bill) { %>
     <tr>
       <td><%= moment(bill.created_at).format("D.MMM.YY") %></td>
