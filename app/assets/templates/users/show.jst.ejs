@@ -29,8 +29,6 @@
             <span class="label label-primary"><%= group.name %></span>
           <% } %>
           <%= split.bill.description %>
-          
-
         <% } %>
       </td>
       <td><% if (type === "debit") { %>-<% } %>$<%= BT.int_to_dec(split.amount) %></td>
