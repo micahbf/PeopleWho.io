@@ -5,14 +5,16 @@
 <table class="table table-condensed table-striped">
   <tr>
     <th class="col-md-2">Date</th>
-    <th class="col-md-7">Bill</th>
-    <th class="col-md-3">Total</th>
+    <th class="col-md-5">Bill</th>
+    <th class="col-md-2">Total</th>
+    <th class="col-md-3">Paid by</th>
   </tr>
   <% bills.each(function (bill) { %>
     <tr>
       <td><%= moment(bill.created_at).format("D.MMM.YY") %></td>
       <td><%= bill.escape("description") %></td>
       <td><%= BT.int_to_dec(bill.get("total")) %></td>
+      <td><%= BT.users.get(bill.get("owner_id")).displayName() %></td>
     </tr>
   <% }) %>
 </table>
