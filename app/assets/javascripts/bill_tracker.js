@@ -40,6 +40,10 @@ window.BT = {
         BT.userAutocompletes.push(user.escape("name"));
       }
     });
+
+    _.each(BT.groups, function(group) {
+      BT.userAutocompletes.push(group.name);
+    });
   },
 
   int_to_dec: function (int) {
