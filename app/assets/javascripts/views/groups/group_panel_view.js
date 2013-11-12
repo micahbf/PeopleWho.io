@@ -32,12 +32,15 @@ BT.Views.GroupsPanelView = Backbone.View.extend({
   createNewGroup: function(event) {
     var newGroupName = $(event.target).val();
     if (newGroupName !== "") {
-      var newGroup = BT.groups.create({ name: newGroupName });
+      var newGroup = BT.groups.create({
+        name: newGroupName,
+        user_ids: [CURRENT_USER_ID]
+      });
+      
       this.render();
+      Backbone.history.navigate("/groups/" + newGroup.cid, { trigger: true });
     } else {
       this.$el.find(".new-group").remove();
     }
-
-
   }
 });
