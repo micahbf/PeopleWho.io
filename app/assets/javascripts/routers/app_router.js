@@ -39,7 +39,7 @@ BT.Routers.AppRouter = Backbone.Router.extend({
     group.fetch({
       success: function () {
         groupView = new BT.Views.GroupDetailView({
-          model: self
+          model: group
         });
 
         self._swapMain(groupView);
