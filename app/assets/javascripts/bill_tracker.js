@@ -41,8 +41,8 @@ window.BT = {
       }
     });
 
-    _.each(BT.groups, function(group) {
-      BT.userAutocompletes.push(group.name);
+    BT.groups.each(function(group) {
+      BT.userAutocompletes.push(group.get("name"));
     });
   },
 
