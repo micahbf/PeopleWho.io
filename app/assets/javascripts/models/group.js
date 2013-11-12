@@ -2,9 +2,9 @@ BT.Models.Group = Backbone.Model.extend({
   urlRoot: "/api/groups",
   collection: BT.Collections.Groups,
   parse: function (serverAttrs) {
-    if (serverAttrs.group.bills) {
-      this.bills = new BT.Collections.Bills(serverAttrs.group.bills);
-      delete serverAttrs.group.bills;
+    if (serverAttrs.bills) {
+      this.bills = new BT.Collections.Bills(serverAttrs.bills);
+      delete serverAttrs.bills;
     }
 
     return serverAttrs;
