@@ -10,7 +10,7 @@
   </td>
   <td>
     <span class="input-group">
-      <span class="input-group-addon input-sm currency-selection">$</span>
+      <span class="input-group-addon input-sm currency-selection"><%= (currencyCode === "USD") ? "$" : currencyCode %></span>
       <input type="text"
              id="bill_split_<%= splitNum %>_amount"
              class="form-control input-sm"

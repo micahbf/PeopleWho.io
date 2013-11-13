@@ -40,7 +40,8 @@ BT.Views.NewBillFormView = Backbone.View.extend({
 
   addSplit: function () {
     var $renderedSplit = $(this.splitTemplate({
-      splitNum: this.splitCounter
+      splitNum: this.splitCounter,
+      currencyCode: this.currencyCode
     }));
 
     $renderedSplit.find(".user-autocomplete").autocomplete({
