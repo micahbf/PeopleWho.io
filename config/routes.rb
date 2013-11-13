@@ -4,6 +4,9 @@ BillTracker::Application.routes.draw do
       post :settle
     end
   end
+
+  post "/demo-login", to: "users#demo_login"
+
   resource :session, only: [:new, :create, :destroy]
   resources :bills, only: [:new, :create, :index, :show]
 
