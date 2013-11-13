@@ -11,14 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131112224607) do
+ActiveRecord::Schema.define(:version => 20131113214443) do
 
   create_table "bill_splits", :force => true do |t|
-    t.integer  "bill_id",    :null => false
-    t.integer  "debtor_id",  :null => false
-    t.integer  "amount",     :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "bill_id",     :null => false
+    t.integer  "debtor_id",   :null => false
+    t.integer  "amount",      :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "orig_amount"
   end
 
   add_index "bill_splits", ["bill_id"], :name => "index_bill_splits_on_bill_id"
