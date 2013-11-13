@@ -5,6 +5,7 @@ gem 'rails', '3.2.14'
 
 gem 'backbone-on-rails'
 gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'delayed_job_active_record'
 gem 'figaro'
 gem 'font-awesome-sass'
 gem 'httparty'

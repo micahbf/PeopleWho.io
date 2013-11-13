@@ -41,4 +41,13 @@ class UsersController < ApplicationController
     end
     redirect_to user_url(current_user)
   end
+
+  def demo_login
+    user_rand = Random.rand(10000)
+    name = "Guest #{user_rand}"
+    email = "guest#{user_rand}@example.com"
+    password = "password#{user_rand}"
+
+    guest_user = User.create({name: name, email: email, password: password})
+  end
 end
