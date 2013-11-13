@@ -1,9 +1,10 @@
-- email notifications
 - demo account
+- automatic bill split amounts in bill split form
 - error rendering
+- bill view
+- email notifications
 - associated users
 - allow entering bills that other people paid
-- bill view
 - facebook integration
 - photo uploads
 - prevent users from seeing bills they are not associated with
