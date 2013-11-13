@@ -31,7 +31,11 @@
           <%= split.bill.description %>
         <% } %>
       </td>
-      <td><% if (type === "debit") { %>-<% } %>$<%= BT.int_to_dec(split.amount) %></td>
+      <td><% if (type === "debit") { %>-<% } %>$<%= BT.int_to_dec(split.amount) %>
+      <% if (split.bill.orig_currency_code !== 'USD') { %>
+        <small class="text-muted">(<%= BT.int_to_dec(split.bill.orig_currency_total) + " " + split.bill.orig_currency_code %>)</small>
+      <% } %>
+      </td>
     </tr>
   <% }) %>
 </table>
