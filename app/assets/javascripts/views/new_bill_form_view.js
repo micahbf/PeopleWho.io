@@ -16,6 +16,8 @@ BT.Views.NewBillFormView = Backbone.View.extend({
     if(BT.userAutocompletes === undefined) {
       BT.populateUserAutocompletes();
     }
+
+    this.currencyCode = "USD";
   },
 
   render: function () {
@@ -55,9 +57,9 @@ BT.Views.NewBillFormView = Backbone.View.extend({
   },
 
   updateCurrency: function (event) {
-    var newCurrencyCode = $("#currency-search-field").val();
+    this.currencyCode = $("#currency-search-field").val();
     $("#currency-dropdown-ul").hide();
-    $(".currency-selection").html(newCurrencyCode);
+    $(".currency-selection").html(this.currencyCode);
   },
 
   slideDownSplits: function (event) {
