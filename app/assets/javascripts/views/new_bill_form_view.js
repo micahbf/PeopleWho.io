@@ -10,6 +10,7 @@ BT.Views.NewBillFormView = Backbone.View.extend({
     "focus .bill-root": "slideDownSplits",
     "blur .bill-root": "maybeSlideUpSplits",
     "blur .currency-input": "formatCurrencyInput",
+    "blur #bill_total": "newBillTotal",
     "submit form": "submit"
   },
 
@@ -19,6 +20,8 @@ BT.Views.NewBillFormView = Backbone.View.extend({
     }
 
     this.currency = _.findWhere(BT.currencies, { code: "USD" });
+    this.intTotal = 0;
+    this.defaultSplitAmount = 0;
   },
 
   render: function () {
@@ -85,6 +88,12 @@ BT.Views.NewBillFormView = Backbone.View.extend({
     if (stripped === "") { stripped = "0"; }
     var formatted = BT.int_to_dec(BT.dec_to_int(stripped));
     $(event.target).val(formatted);
+  },
+
+  newBillTotal: function(event) {
+    this.intTotal = BT.dec_to_int($(event.target).val());
+    this.defaultSplitAmount = Math.floor(this.intTotal / (this.splitCounter + 2));
+    this.updateSplitDefaults();
   },
 
   submit: function (event) {
