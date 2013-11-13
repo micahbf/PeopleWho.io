@@ -93,8 +93,12 @@ BT.Views.NewBillFormView = Backbone.View.extend({
 
   newBillTotal: function(event) {
     this.intTotal = BT.dec_to_int($(event.target).val());
+    this.updateSplitDefaultAmount();
+  },
+
+  updateSplitDefaultAmount: function () {
     this.defaultSplitAmount = Math.floor(this.intTotal / (this.splitCounter + 1));
-    this.updateSplitDefaults();
+    this.updateSplitDefaults();    
   },
 
   updateSplitDefaults: function () {
