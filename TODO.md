@@ -13,3 +13,4 @@
 - maybe bootstrap ALL user data (like users/show)
 - split bill form on group show page should split with group
 - dynamic user stub creation on add group member
+- add original amount to bill splits
