@@ -13,7 +13,12 @@
     <tr>
       <td><%= moment(bill.created_at).format("D.MMM.YY") %></td>
       <td><%= bill.escape("description") %></td>
-      <td><%= BT.int_to_dec(bill.get("total")) %></td>
+      <td>
+        <%= BT.int_to_dec(bill.get("total")) %>
+        <% if (bill.get("orig_currency_code") !== 'USD') { %>
+          <small class="text-muted">(<%= BT.int_to_dec(bill.get("orig_currency_total")) %> <%= bill.escape("orig_currency_code") %>)
+        <% } %>
+      </td>
       <td><%= BT.users.get(bill.get("owner_id")).displayName() %></td>
     </tr>
   <% }) %>
