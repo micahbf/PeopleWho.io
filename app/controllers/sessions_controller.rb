@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
 
     if user
       self.current_user = user
-      redirect_to user_url(user)
+      redirect_to root_url
     else
       flash.now[:errors] = "Invalid email/password"
       render :new
@@ -23,6 +23,6 @@ class SessionsController < ApplicationController
 
   def destroy
     logout_current_user!
-    redirect_to new_session_url
+    redirect_to root_url
   end
 end
