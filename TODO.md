@@ -1,5 +1,4 @@
 - demo account
-- automatic bill split amounts in bill split form
 - error rendering
 - bill view
 - email notifications
