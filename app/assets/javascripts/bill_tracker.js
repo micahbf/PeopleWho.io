@@ -7,6 +7,7 @@ window.BT = {
     var bootstrap_users = JSON.parse($('#users_index_bootstrap').html());
     var bootstrap_groups = JSON.parse($('#groups_bootstrap').html());
     BT.currencies = JSON.parse($('#currencies_bootstrap').html());
+    this.populateCurrencyAutocompletes();
 
     BT.users = new BT.Collections.Users(bootstrap_users.users);
     BT.balances = bootstrap_users.balances;
@@ -44,6 +45,15 @@ window.BT = {
 
     BT.groups.each(function(group) {
       BT.userAutocompletes.push(group.get("name"));
+    });
+  },
+
+  populateCurrencyAutocompletes: function () {
+    BT.currencyAutocompletes = _.map(BT.currencies, function (currency) {
+      return {
+        label: "" + currency.code + " - " + currency.full_name,
+        value: currency.code
+      };
     });
   },
 
