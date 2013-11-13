@@ -1,6 +1,8 @@
 # PeopleWho.io
 
-PeopleWho.io is a web app for splitting bills with friends by Micah Buckley-Farlee.
+PeopleWho.io is a web app for splitting bills with friends by [Micah Buckley-Farlee](http://micahbf.com/).
+
+[See it in action!](http://peoplewhoio.com)
 
 ## Features
 
