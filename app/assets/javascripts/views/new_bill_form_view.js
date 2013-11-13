@@ -5,6 +5,8 @@ BT.Views.NewBillFormView = Backbone.View.extend({
 
   events: {
     "click #add-split": "addSplit",
+    "click #currency-select-btn": "dropCurrencySearch",
+    "blur #currency-search": "updateCurrency",
     "focus .bill-root": "slideDownSplits",
     "blur .bill-root": "maybeSlideUpSplits",
     "submit form": "submit"
@@ -18,10 +20,17 @@ BT.Views.NewBillFormView = Backbone.View.extend({
 
   render: function () {
     var $renderedForm = $(this.template());
+    this.$currencySelectButton = $renderedForm.find("#currency-select-btn");
+    this.$currencySearchField = $renderedForm.find('#currency-search-field');
+    this.$currencySearchField.autocomplete({
+      source: BT.currencyAutocompletes
+    });
+
     this.$splitsDiv = $renderedForm.find("#bs-div");
     this.$splitsTable = $renderedForm.find("#bill-splits");
     this.addSplit();
     this.$splitsDiv.hide();
+
     this.$el.append($renderedForm);
     this.$el.addClass("panel panel-default");
     return this;
@@ -38,6 +47,11 @@ BT.Views.NewBillFormView = Backbone.View.extend({
 
     this.$splitsTable.find("#bill-form-buttons").before($renderedSplit);
     this.splitCounter += 1;
+  },
+
+  dropCurrencySearch: function (event) {
+    $("#currency-dropdown-ul").show();
+    $("#currency-search-field").focus();
   },
 
   slideDownSplits: function (event) {

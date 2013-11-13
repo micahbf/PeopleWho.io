@@ -17,7 +17,12 @@
       </td>
       <td>
         <div class="input-group">
-          <span class="input-group-addon">$</span>
+          <div id="currency-dropdown" class="input-group-btn">
+            <button type="button" id="currency-select-btn" class="btn btn-default dropdown-toggle currency-selection">$ <i class="fa fa-caret-down"></i></button>
+            <ul class="dropdown-menu" id="currency-dropdown-ul">
+              <li><input type="text" class="form-control" id="currency-search-field" placeholder="currency"></li>
+            </ul>
+          </div>  
           <input type="text"
                  id="bill_total"
                  name="bill[decimal_total]"
