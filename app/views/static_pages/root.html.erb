@@ -12,3 +12,7 @@
 <script id="groups_bootstrap" type="application/json">
   <%= j(@groups.to_json(methods: :user_ids)).html_safe %>
 </script>
+
+<script id="currencies_bootstrap" type="application/json">
+  <%= j(@currencies.to_json(except: [:created_at, :updated_at])).html_safe %>
+</script>

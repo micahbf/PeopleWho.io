@@ -6,6 +6,7 @@ window.BT = {
   initialize: function() {
     var bootstrap_users = JSON.parse($('#users_index_bootstrap').html());
     var bootstrap_groups = JSON.parse($('#groups_bootstrap').html());
+    BT.currencies = JSON.parse($('#currencies_bootstrap').html());
 
     BT.users = new BT.Collections.Users(bootstrap_users.users);
     BT.balances = bootstrap_users.balances;
