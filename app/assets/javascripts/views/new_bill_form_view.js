@@ -55,6 +55,7 @@ BT.Views.NewBillFormView = Backbone.View.extend({
 
     this.$splitsTable.find("#bill-form-buttons").before($renderedSplit);
     this.splitCounter += 1;
+    this.updateSplitDefaultAmount();
   },
 
   dropCurrencySearch: function (event) {
