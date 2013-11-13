@@ -6,6 +6,7 @@ gem 'rails', '3.2.14'
 gem 'backbone-on-rails'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'delayed_job_active_record'
+gem 'faker'
 gem 'figaro'
 gem 'font-awesome-sass'
 gem 'httparty'
@@ -25,7 +26,6 @@ end
 group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
-  gem 'faker'
 end
 
 group :development do
