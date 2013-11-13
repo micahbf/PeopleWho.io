@@ -11,6 +11,7 @@ BT.Views.NewBillFormView = Backbone.View.extend({
     "blur .bill-root": "maybeSlideUpSplits",
     "blur .currency-input": "formatCurrencyInput",
     "blur #bill_total": "newBillTotal",
+    "blur .split-amount-input": "maybeMarkAsNotDefault",
     "submit form": "submit"
   },
 
@@ -106,6 +107,13 @@ BT.Views.NewBillFormView = Backbone.View.extend({
         $input.val(BT.int_to_dec(view.defaultSplitAmount));
       }
     });
+  },
+
+  maybeMarkAsNotDefault: function (event) {
+    $input = $(event.target);
+    if ($input.val() !== BT.int_to_dec(this.defaultSplitAmount)) {
+      $input.data("is-default", false);
+    }
   },
 
   submit: function (event) {
