@@ -2,7 +2,6 @@
 - demo account
 - error rendering
 - associated users
-- write readme
 - allow entering bills that other people paid
 - bill view
 - facebook integration
