@@ -9,6 +9,7 @@ BT.Views.NewBillFormView = Backbone.View.extend({
     "blur #currency-search-field": "updateCurrency",
     "focus .bill-root": "slideDownSplits",
     "blur .bill-root": "maybeSlideUpSplits",
+    "blur .currency-input": "formatCurrencyInput",
     "submit form": "submit"
   },
 
@@ -76,6 +77,14 @@ BT.Views.NewBillFormView = Backbone.View.extend({
     if (_.all($('.bill-root'), function (el) { return $(el).val() === ""; })) {
       this.$splitsDiv.slideUp(200);
     }
+  },
+
+  formatCurrencyInput: function (event) {
+    var input = $(event.target).val();
+    var stripped = input.replace(/[^0-9\.]/, "");
+    if (stripped === "") { stripped = "0"; }
+    var formatted = BT.int_to_dec(BT.dec_to_int(stripped));
+    $(event.target).val(formatted);
   },
 
   submit: function (event) {
