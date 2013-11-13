@@ -12,7 +12,8 @@
                  id="bill_description"
                  name="bill[description]"
                  class="form-control bill-root"
-                 placeholder="Dinner">
+                 placeholder="Dinner"
+                 tabindex="1">
         </div>
       </td>
       <td>
@@ -27,7 +28,8 @@
                  id="bill_total"
                  name="bill[decimal_total]"
                  class="form-control bill-root currency-input"
-                 placeholder="20.00"><br>
+                 placeholder="20.00"
+                 tabindex="2"><br>
         </div>
       </td>
     </tr>
@@ -40,11 +42,13 @@
           <input type="button"
                  class="btn btn-info pull-left"
                  id="add-split"
-                 value="Add a split">
+                 value="Add a split"
+                 tabindex="100">
 
           <input type="submit"
                  class="btn btn-primary pull-right"
-                 value="Split it!">
+                 value="Split it!"
+                 tabindex="101">
         </td>
       </tr>
     </table>

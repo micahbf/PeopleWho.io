@@ -5,7 +5,8 @@
              id="bill_split_<%= splitNum %>_debtor_id"
              class="user-autocomplete form-control input-sm"
              name="bill[bill_splits_attributes][<%= splitNum %>][debtor_ident]"
-             placeholder="Name or Email">
+             placeholder="Name or Email"
+             tabindex="<%= (splitNum * 2) + 3 %>">
     </span>
   </td>
   <td>
@@ -16,7 +17,8 @@
              class="form-control input-sm currency-input split-amount-input"
              name="bill[bill_splits_attributes][<%= splitNum %>][decimal_amount]"
              placeholder="10.00"
-             data-is-default="true">
+             data-is-default="true"
+             tabindex="<%= (splitNum * 2) + 4 %>">
     </span>
   </td>
 </tr>
