@@ -17,7 +17,7 @@ BT.Views.NewBillFormView = Backbone.View.extend({
       BT.populateUserAutocompletes();
     }
 
-    this.currencyCode = "USD";
+    this.currency = _.findWhere(BT.currencies, { code: "USD" });
   },
 
   render: function () {
@@ -41,7 +41,7 @@ BT.Views.NewBillFormView = Backbone.View.extend({
   addSplit: function () {
     var $renderedSplit = $(this.splitTemplate({
       splitNum: this.splitCounter,
-      currencyCode: this.currencyCode
+      currencyCode: this.currency.code
     }));
 
     $renderedSplit.find(".user-autocomplete").autocomplete({
@@ -58,9 +58,14 @@ BT.Views.NewBillFormView = Backbone.View.extend({
   },
 
   updateCurrency: function (event) {
-    this.currencyCode = $("#currency-search-field").val();
+    var newCurrencyCode = $("#currency-search-field").val();
     $("#currency-dropdown-ul").hide();
-    $(".currency-selection").html(this.currencyCode);
+
+    var newCurrency = _.findWhere(BT.currencies, {code: newCurrencyCode});
+    if (newCurrency !== undefined) {
+      this.currency = newCurrency;
+      $(".currency-selection").html(this.currency.code);
+    }
   },
 
   slideDownSplits: function (event) {
