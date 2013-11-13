@@ -36,7 +36,7 @@ BT.Views.NewBillFormView = Backbone.View.extend({
 
     this.$splitsDiv = $renderedForm.find("#bs-div");
     this.$splitsTable = $renderedForm.find("#bill-splits");
-    this.addSplit();
+    this.addSplit(false);
     this.$splitsDiv.hide();
 
     this.$el.append($renderedForm);
@@ -44,17 +44,22 @@ BT.Views.NewBillFormView = Backbone.View.extend({
     return this;
   },
 
-  addSplit: function () {
+  addSplit: function (focus) {
+    if (typeof(focus) === 'undefined') { focus = true; }
+
     var $renderedSplit = $(this.splitTemplate({
       splitNum: this.splitCounter,
       currencyCode: this.currency.code
     }));
 
-    $renderedSplit.find(".user-autocomplete").autocomplete({
+    $idnField = $renderedSplit.find(".user-autocomplete");
+    $idnField.autocomplete({
       source: BT.userAutocompletes
     });
 
+
     this.$splitsTable.find("#bill-form-buttons").before($renderedSplit);
+    $idnField.focus();
     this.splitCounter += 1;
     this.updateSplitDefaultAmount();
   },
