@@ -5,7 +5,6 @@
 - write readme
 - allow entering bills that other people paid
 - bill view
-- currency api
 - facebook integration
 - photo uploads
 - prevent users from seeing bills they are not associated with
