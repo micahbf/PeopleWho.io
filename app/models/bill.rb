@@ -143,6 +143,7 @@ class Bill < ActiveRecord::Base
       self.total = (self.orig_currency_total.to_f / orig_currency.rate).round
 
       self.bill_splits.each do |bill_split|
+        bill_split.orig_amount = bill_split.amount
         bill_split.amount = (bill_split.amount.to_f / orig_currency.rate).round
       end
     end
