@@ -208,5 +208,13 @@ BT.Views.NewBillFormView = Backbone.View.extend({
         BT.recalculateBalances(bill);
       }
     });
+  },
+
+  _isGroup: function (name) {
+    if (BT.groups.findWhere({name: name}) !== undefined) {
+      return true;
+    } else {
+      return false;
+    }
   }
 });
