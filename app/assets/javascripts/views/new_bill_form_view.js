@@ -179,9 +179,6 @@ BT.Views.NewBillFormView = Backbone.View.extend({
     bill.save(billAttrs, {
       success: function () {
         if (syncUsers) {
-          event.target.reset();
-          self.$splitsDiv.slideUp(200);
-
           BT.users.fetch({
             reset: true,
             async: false
