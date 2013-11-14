@@ -1,3 +1,5 @@
+require 'demo_user_generator'
+
 class UsersController < ApplicationController
   def new
     @user = User.new
@@ -43,11 +45,8 @@ class UsersController < ApplicationController
   end
 
   def demo_login
-    user_rand = Random.rand(10000)
-    name = "Guest #{user_rand}"
-    email = "guest#{user_rand}@example.com"
-    password = "password#{user_rand}"
-
-    guest_user = User.create({name: name, email: email, password: password})
+    guest_user = DemoUserGenerator::new_demo_user
+    self.current_user = guest_user
+    redirect_to root_url
   end
 end
