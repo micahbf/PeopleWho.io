@@ -25,6 +25,7 @@ BT.Views.NewBillFormView = Backbone.View.extend({
     this.currency = _.findWhere(BT.currencies, { code: "USD" });
     this.intTotal = 0;
     this.defaultSplitAmount = 0;
+    this.hiddenForGroup = [];
   },
 
   render: function () {
@@ -142,6 +143,21 @@ BT.Views.NewBillFormView = Backbone.View.extend({
     } else {
       this.ungroupifyForm();
     }
+  },
+
+  groupifyForm: function () {
+    this.hiddenForGroup.push(this.$el.find("#add-split"));
+    this.hiddenForGroup.push(this.$el.find(".split-amount-input-group"));
+    _.each(this.hiddenForGroup, function ($toHide) {
+      $toHide.fadeOut(200);
+    });
+    this.$el.find("#bill-submit-btn").focus();
+  },
+
+  ungroupifyForm: function () {
+    _.each(this.hiddenForGroup, function ($toShow) {
+      $toShow.fadeIn(200);
+    });
   },
 
   submit: function (event) {
