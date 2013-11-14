@@ -26,6 +26,7 @@ BT.Views.NewBillFormView = Backbone.View.extend({
     this.intTotal = 0;
     this.defaultSplitAmount = 0;
     this.hiddenForGroup = [];
+    this.listenTo(Backbone.history, "route", this._changeContext);
   },
 
   render: function () {
@@ -241,6 +242,21 @@ BT.Views.NewBillFormView = Backbone.View.extend({
       return true;
     } else {
       return false;
+    }
+  },
+
+  _changeContext: function (router, route, params) {
+    if (route === "showGroup") {
+      var groupName = BT.groups.get(params[0]).escape("name");
+      this.$el.find("#bill_split_0_debtor_id").val(groupName);
+      this.groupifyForm();
+    } else if (route === "showUser") {
+      this.ungroupifyForm();
+      var displayName = BT.users.get(params[0]).displayName();
+      this.$el.find("#bill_split_0_debtor_id").val(displayName);
+    } else {
+      this.ungroupifyForm();
+      this.$el.find("#bill_split_0_debtor_id").val("");
     }
   }
 });
