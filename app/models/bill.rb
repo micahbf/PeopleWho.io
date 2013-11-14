@@ -27,7 +27,7 @@ class Bill < ActiveRecord::Base
                                  foreign_key: :orig_currency_code,
                                  primary_key: :code
 
-  has_many :bill_splits, inverse_of: :bill
+  has_many :bill_splits, inverse_of: :bill, dependent: :destroy
   accepts_nested_attributes_for :bill_splits
 
   def self.create_settle!(owed_user, paying_user)
