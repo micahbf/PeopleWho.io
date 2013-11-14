@@ -13,6 +13,7 @@ BT.Views.NewBillFormView = Backbone.View.extend({
     "blur .currency-input": "formatCurrencyInput",
     "blur #bill_total": "newBillTotal",
     "blur .split-amount-input": "maybeMarkAsNotDefault",
+    "blur #bill_split_0_debtor_id": "checkIfGroup",
     "submit form": "submit"
   },
 
@@ -131,6 +132,15 @@ BT.Views.NewBillFormView = Backbone.View.extend({
     $input = $(event.target);
     if ($input.val() !== BT.int_to_dec(this.defaultSplitAmount)) {
       $input.data("is-default", false);
+    }
+  },
+
+  checkIfGroup: function (event) {
+    var name = $(event.target).val();
+    if (this._isGroup(name)) {
+      this.groupifyForm();
+    } else {
+      this.ungroupifyForm();
     }
   },
 
