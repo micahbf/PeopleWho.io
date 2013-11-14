@@ -45,7 +45,7 @@ class UsersController < ApplicationController
   end
 
   def demo_login
-    guest_user = DemoUserGenerator::new_demo_user
+    guest_user = DemoUserGenerator::cached_demo_user
     self.current_user = guest_user
     redirect_to root_url
   end
