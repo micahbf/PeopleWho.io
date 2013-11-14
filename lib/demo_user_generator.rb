@@ -13,7 +13,7 @@ module DemoUserGenerator
 
     stub_user_attrs = []
     10.times do
-      name = Faker::Name.name
+      name = Faker::Name.first_name + Faker::Name.last_name
       email = Faker::Internet.email
       password = Faker::Internet.password
 
@@ -42,7 +42,7 @@ module DemoUserGenerator
       {description: "Re-upping coffee stash", total: 1638, created_at: now - 6.hours}
     ].map do |bill_attrs|
       bill_attrs.merge({
-        owner_id: roommate.user_ids.sample,
+        owner_id: roommates.user_ids.sample,
         group_id: roommates.id
       })
     end.tap do |bills_attrs|
