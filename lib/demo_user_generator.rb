@@ -1,5 +1,5 @@
 module DemoUserGenerator
-  def new_demo_user(expiration_time = 12.hours)
+  def self.new_demo_user(expiration_time = 12.hours)
     now = Time.now
     to_destroy = []
 
@@ -42,7 +42,7 @@ module DemoUserGenerator
       {description: "Re-upping coffee stash", total: 1638, created_at: now - 6.hours}
     ].map do |bill_attrs|
       bill_attrs.merge({
-        owner_id: roommate_ids.sample,
+        owner_id: roommate.user_ids.sample,
         group_id: roommates.id
       })
     end.tap do |bills_attrs|
@@ -73,7 +73,7 @@ module DemoUserGenerator
       {description: "Prague AirBnB apartment", orig_currency_code: "CZK", total: 700000, created_at: now - 25.days}
     ].map do |bill_attrs|
       bill_attrs.merge({
-        owner_id: vacation_user_ids.sample,
+        owner_id: vacation.user_ids.sample,
         group_id: vacation.id
       })
     end.tap do |bills_attrs|
@@ -103,6 +103,11 @@ module DemoUserGenerator
         bill.bill_splits.build({debtor_id: guest_user.id, amount: bill.total / 2})
       end
       bill.save
+      to_destroy << bill
+    end
+
+    to_destroy.each do |model_to_destroy|
+      model_to_destroy.delay(run_at: expiration_time.from_now).destroy
     end
 
     guest_user
