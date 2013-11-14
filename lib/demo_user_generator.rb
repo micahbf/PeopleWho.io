@@ -13,7 +13,7 @@ module DemoUserGenerator
 
     stub_user_attrs = []
     10.times do
-      name = Faker::Name.first_name + Faker::Name.last_name
+      name = Faker::Name.first_name + " " + Faker::Name.last_name
       email = Faker::Internet.email
       password = Faker::Internet.password
 
