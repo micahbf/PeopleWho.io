@@ -39,7 +39,7 @@ BT.Views.NewBillFormView = Backbone.View.extend({
     this.addSplit(false);
     this.$splitsDiv.hide();
 
-    this.$el.append($renderedForm);
+    this.$el.html($renderedForm);
     this.$el.addClass("panel panel-default");
     return this;
   },
@@ -141,7 +141,6 @@ BT.Views.NewBillFormView = Backbone.View.extend({
     var syncUsers = false;
     var isGroupSplit = false;
 
-    event.target.reset();
     this.$splitsDiv.slideUp(200);
 
     _.each(billAttrs.bill.bill_splits_attributes, function (splitAttrs) {
@@ -178,6 +177,17 @@ BT.Views.NewBillFormView = Backbone.View.extend({
     var bill = new BT.Models.Bill();
     bill.save(billAttrs, {
       success: function () {
+        self.render();
+
+        var $alert = $(JST['alerts/success']({
+          message: 'Your bill has been saved!'
+        }));
+
+        $alert.hide();
+
+        $("#new-bill-form").prepend($alert);
+        $alert.slideDown(200).delay(2000).slideUp(200).remove();
+
         if (syncUsers) {
           BT.users.fetch({
             reset: true,
