@@ -179,14 +179,23 @@ BT.Views.NewBillFormView = Backbone.View.extend({
       success: function () {
         self.render();
 
-        var $alert = $(JST['alerts/success']({
-          message: 'Your bill has been saved!'
-        }));
+        var $panelHeading = self.$el.find(".panel-heading").eq(0);
 
-        $alert.hide();
+        $panelHeading.animate({
+          "background-color": "#3fb618",
+          "color": "#ffffff"
+        }, 200);
 
-        $("#new-bill-form").prepend($alert);
-        $alert.slideDown(200).delay(2000).slideUp(200).remove();
+        $panelHeading.text("Bill saved!");
+
+        window.setTimeout(function () {
+          $panelHeading.animate({
+            "background-color": "f5f5f5",
+            "color": "#333333"
+          }, 200);
+
+          $panelHeading.text("Split a bill!");
+        }, 3000);
 
         if (syncUsers) {
           BT.users.fetch({
