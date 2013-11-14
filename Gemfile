@@ -16,6 +16,7 @@ gem 'ejs'
 gem 'oj'
 gem 'pg'
 gem 'rabl'
+gem 'redis-rails'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
