@@ -14,7 +14,7 @@ window.BT = {
     BT.bills = new BT.Collections.Bills();
     BT.groups = new BT.Collections.Groups(bootstrap_groups);
 
-    new BT.Routers.AppRouter($('#content'));
+    BT.router = new BT.Routers.AppRouter($('#content'));
     Backbone.history.start();
   },
 
