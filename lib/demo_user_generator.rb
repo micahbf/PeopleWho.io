@@ -66,7 +66,7 @@ module DemoUserGenerator
       {description: "Sarajevo hostel", orig_currency_code: "BAM", total: 32000, created_at: now - 32.days},
       {description: "Sarajevo guided tour", orig_currency_code: "BAM", total: 10000, created_at: now - 31.days},
       {description: "Train tickets Sarajevo -> Belgrade", orig_currency_code: "BAM", total: 37871, created_at: now - 30.days},
-      {description: "Dinner at Serbian restaurant", orig_currency_code: "RSD", total: 6800, created_at: now - 29.days},
+      {description: "Dinner at Serbian restaurant", orig_currency_code: "RSD", total: 695000, created_at: now - 29.days},
       {description: "Belgrade hotel", orig_currency_code: "RSD", total: 2200000, created_at: now - 28.days},
       {description: "Bus tickets Belgrade -> Prague", orig_currency_code: "RSD", total: 620000, created_at: now - 27.days},
       {description: "Prague river cruise", orig_currency_code: "CZK", total: 350000, created_at: now - 26.days},
