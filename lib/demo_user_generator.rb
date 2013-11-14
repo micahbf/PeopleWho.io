@@ -107,7 +107,7 @@ module DemoUserGenerator
     end
 
     to_destroy.each do |model_to_destroy|
-      model_to_destroy.delay(run_at: expiration_time.from_now).destroy
+      model_to_destroy.delay(run_at: expiration_time.from_now, queue: 'demo-accounts').destroy
     end
 
     guest_user
