@@ -1,5 +1,14 @@
 module DemoUserGenerator
-  def self.new_demo_user(expiration_time = 12.hours)
+  def self.cached_demo_user
+    Rails.cache.fetch("demo-user", expires_in: 6.hours) do
+      demo_user = new_demo_user
+      User.includes(paid_bills: [:bill_splits, :group],
+                   debt_splits: [:bill],
+                        groups: [:user_group_memberships, :bills]).find(demo_user.id)
+    end
+  end
+
+  def self.new_demo_user(expiration_time = 6.hours)
     now = Time.now
     to_destroy = []
 
