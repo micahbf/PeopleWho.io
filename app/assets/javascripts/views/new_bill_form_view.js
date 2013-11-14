@@ -171,6 +171,10 @@ BT.Views.NewBillFormView = Backbone.View.extend({
 
     if (isGroupSplit) { delete billAttrs.bill.bill_splits_attributes; }
 
+    if (billAttrs.bill.orig_currency_code === "") {
+      billAttrs.bill.orig_currency_code = "USD";
+    }
+
     var bill = new BT.Models.Bill();
     bill.save(billAttrs, {
       success: function () {
