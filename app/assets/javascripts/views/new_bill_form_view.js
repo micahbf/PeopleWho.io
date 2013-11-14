@@ -141,6 +141,9 @@ BT.Views.NewBillFormView = Backbone.View.extend({
     var syncUsers = false;
     var isGroupSplit = false;
 
+    event.target.reset();
+    this.$splitsDiv.slideUp(200);
+
     _.each(billAttrs.bill.bill_splits_attributes, function (splitAttrs) {
       var group;
       var user = BT.users.find(function (user) {
