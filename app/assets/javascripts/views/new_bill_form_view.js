@@ -190,7 +190,7 @@ BT.Views.NewBillFormView = Backbone.View.extend({
 
         window.setTimeout(function () {
           $panelHeading.animate({
-            "background-color": "f5f5f5",
+            "background-color": "#f5f5f5",
             "color": "#333333"
           }, 200);
 
