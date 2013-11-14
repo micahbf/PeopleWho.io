@@ -115,7 +115,11 @@ class Bill < ActiveRecord::Base
       split_amounts = randomized_split_amounts(self.total, members.count)
 
       split_attrs_array = other_members.map do |member|
-        { amount: split_amounts.pop, debtor_id: member.id }
+        base_hash = { amount: split_amounts.pop, debtor_id: member.id }
+        if (self.orig_currency_code != 'USD')
+          base_hash.merge!({orig_amount: self.orig_currency_total / members.count})
+        end
+        base_hash
       end
 
       self.bill_splits.build(split_attrs_array)
