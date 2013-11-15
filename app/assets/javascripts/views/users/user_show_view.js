@@ -20,7 +20,7 @@ BT.Views.UserShowView = Backbone.View.extend({
 
   settle: function (event) {
     event.preventDefault();
-    var user = BT.users.get($(event.target).data("user-id"));
+    var user = BT.users.get($(event.currentTarget).data("user-id"));
     user.settle();
     this.render();
   }
