@@ -12,7 +12,7 @@
   </tr>
   <% bills.each(function (bill) { %>
     <tr>
-      <td><%= moment(bill.created_at).format("D.MMM.YY") %></td>
+      <td><%= moment(bill.get("created_at")).format("D.MMM.YY") %></td>
       <td><%= bill.escape("description") %></td>
       <td>
         <%= BT.int_to_dec(bill.get("total")) %>
