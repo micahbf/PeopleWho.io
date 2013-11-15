@@ -16,6 +16,8 @@ window.BT = {
 
     BT.router = new BT.Routers.AppRouter($('#content'));
     Backbone.history.start();
+
+    $("body").delegate(":text", "keypress", BT._blurOnEnter);
   },
 
   recalculateBalances: function(newBill) {
@@ -63,6 +65,12 @@ window.BT = {
 
   dec_to_int: function (dec) {
     return Math.floor(parseFloat(dec) * 100);
+  },
+
+  _blurOnEnter: function(event) {
+    if (event.which == 13) {
+      $(event.target).blur();
+    }
   }
 };
 
