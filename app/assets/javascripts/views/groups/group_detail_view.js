@@ -50,7 +50,8 @@ BT.Views.GroupDetailView = Backbone.View.extend({
       currentMemberIds.push(user.id);
       this.model.set("user_ids", currentMemberIds);
       this.model.save();
-      this.render();
     }
+
+    this.render();
   }
 });
