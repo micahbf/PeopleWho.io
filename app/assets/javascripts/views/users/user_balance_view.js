@@ -40,13 +40,11 @@ BT.Views.UserBalanceView = Backbone.View.extend({
 
   settle: function (event) {
     event.preventDefault();
-    var userId = $(event.target).data("user-id");
-    $.ajax({
-      url: "/api/users/" + userId + "/settle",
-      type: "post",
-      success: function () {
-        $("tr[data-user-id='" + userId + "']").fadeOut();
-      }
+    var userId = $(event.currentTarget).data("user-id");
+    var user = BT.users.get(userId);
+    
+    user.settle(function () {
+      $("tr[data-user-id='" + userId + "']").fadeOut();
     });
   },
 
