@@ -1,4 +1,3 @@
-- demo account
 - error rendering
 - bill view
 - email notifications
@@ -10,6 +9,4 @@
 - make sure user show page dynamically updates
 - write more model specs
 - maybe bootstrap ALL user data (like users/show)
-- split bill form on group show page should split with group
 - dynamic user stub creation on add group member
-- add original amount to bill splits
