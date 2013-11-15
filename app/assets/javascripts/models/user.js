@@ -28,7 +28,8 @@ BT.Models.User = Backbone.Model.extend({
       bill: {
         total: this.get("balance"),
         settling: true,
-        created_at: moment().toISOString()
+        created_at: moment().toISOString(),
+        orig_currency_code: 'USD'
       }
     });
 
