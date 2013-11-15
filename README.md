@@ -18,5 +18,6 @@ PeopleWho.io is a web app for splitting bills with friends by [Micah Buckley-Far
 - Model unit tests with RSpec
 - JSON API designed with RABL
 - PostgreSQL
-- External currency API consumption with HTTParty gem
+- External currency rate API consumption with HTTParty gem
+- Uses Redis for caching expensive queries
 - Twitter Bootstrap based layout
