@@ -20,7 +20,7 @@
           <small class="text-muted">(<%= BT.int_to_dec(bill.get("orig_currency_total")) %> <%= bill.escape("orig_currency_code") %>)
         <% } %>
       </td>
-      <td><%= BT.users.get(bill.get("owner_id")).displayName() %></td>
+      <td><a href="/#/users/<%= bill.get("owner_id") %>"><%= BT.users.get(bill.get("owner_id")).displayName() %></a></td>
     </tr>
   <% }) %>
 </table>
