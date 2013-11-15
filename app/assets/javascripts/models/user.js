@@ -1,5 +1,11 @@
 BT.Models.User = Backbone.Model.extend({
   collection: BT.Collections.Users,
+
+  initialize: function () {
+    if (typeof this.attributes.bill_splits === "undefined") {
+      this.set("bill_splits", []);
+    }
+  },
   
   displayName: function () {
     if (this.get("name")) {
@@ -33,7 +39,9 @@ BT.Models.User = Backbone.Model.extend({
       url: "/api/users/" + this.id + "/settle",
       type: "post",
       success: function () {
-        successCallback.call(callbackBinding, self);
+        if(successCallback) {
+          successCallback.call(callbackBinding, self);
+        }
       }
     });
   }
