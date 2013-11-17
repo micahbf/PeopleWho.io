@@ -16,3 +16,9 @@
 
 # Ignore application configuration
 /config/application.yml
+
+# Ignore pow config
+/.powder
+
+# Ignore rbenv config
+/.ruby-version
