@@ -94,4 +94,52 @@ describe Bill do
       end
     end
   end
+
+  describe "Currency Conversion" do
+    context "from a currency that is not USD" do
+      let(:currency) { FactoryGirl.create(:currency) }
+      subject(:bill) { FactoryGirl.build(:bill, orig_currency_code: currency.code) }
+      let(:bill_split) { FactoryGirl.build(:bill_split) }
+      
+      before do
+        bill.bill_splits << bill_split
+        bill.save
+      end
+
+      it "should have a total converted to USD" do
+        expect(bill.total).to eq(1000)
+      end
+
+      it "should save the original currency code" do
+        expect(bill.orig_currency_code).to eq(currency.code)
+      end
+
+      it "should save the total in the original currency" do
+        expect(bill.orig_currency_total).to eq(10000)
+      end
+
+      describe "bill splits" do
+
+        it "should be converted to USD" do
+          expect(bill_split.amount).to eq(500)
+        end
+
+        it "should save the amount in the original currency" do
+          expect(bill_split.orig_amount).to eq(5000)
+        end
+      end
+    end
+
+    context "when the currency is unspecified" do
+      subject(:bill) { FactoryGirl.create(:bill) }
+
+      it "should default to USD" do
+        expect(bill.orig_currency_code).to eq("USD")
+      end
+
+      it "should copy the amount to the original amount" do
+        expect(bill.orig_currency_total).to eq(10000)
+      end
+    end
+  end
 end
