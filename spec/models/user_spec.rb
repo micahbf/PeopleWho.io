@@ -52,4 +52,22 @@ describe User do
       end
     end
   end
+
+  describe "#display_name" do
+    subject(:user) { FactoryGirl.build(:user) }
+
+    it "returns the name if name is given" do
+      expect(user.display_name).to eq(user.name)
+    end
+
+    it "returns the email if no name is given" do
+      user.name = nil
+      expect(user.display_name).to eq(user.email)
+    end
+  end
+  
+  describe "#user_ids_with_outstanding_balance"
+  describe "#users_with_outstanding_balance"
+  describe "#balance_with"
+  describe "#splits_with"
 end
