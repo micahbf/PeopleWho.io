@@ -3,5 +3,7 @@
 FactoryGirl.define do
   factory :bill_split do
     amount 5000
+
+    association :debtor, factory: :user
   end
 end
