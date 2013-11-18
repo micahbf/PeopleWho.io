@@ -65,9 +65,44 @@ describe User do
       expect(user.display_name).to eq(user.email)
     end
   end
-  
-  describe "#user_ids_with_outstanding_balance"
-  describe "#users_with_outstanding_balance"
-  describe "#balance_with"
-  describe "#splits_with"
+
+  describe "balance and bill methods" do
+    subject(:user) { FactoryGirl.create(:user) }
+    let(:owes_money) { FactoryGirl.create(:user) }
+    let(:is_owed_money) { FactoryGirl.create(:user) }
+
+    before do
+      credit = FactoryGirl.create(:bill, owner: user)
+      FactoryGirl.create(:bill_split, bill: credit, debtor: owes_money)
+
+      debit = FactoryGirl.create(:bill, owner: is_owed_money)
+      FactoryGirl.create(:bill_split, bill: debit, debtor: user)
+    end
+
+    describe "#user_ids_with_outstanding_balance" do
+      it "should return a hash" do
+        expect(user.user_ids_with_outstanding_balance).to be_a(Hash)
+      end
+
+      it "should include the ID of a user who owes money" do
+        expect(user.user_ids_with_outstanding_balance).to include(owes_money.id)
+      end
+
+      it "should have a positive balance with a user who owes money" do
+        expect(user.user_ids_with_outstanding_balance[owes_money.id]).to be > 0
+      end
+
+      it "should include the ID of a user who is owed money" do
+        expect(user.user_ids_with_outstanding_balance).to include(is_owed_money.id)
+      end
+
+      it "should have a negative balance with a user who is owed money" do
+        expect(user.user_ids_with_outstanding_balance[is_owed_money.id]).to be < 0
+      end
+    end
+
+    describe "#users_with_outstanding_balance"
+    describe "#balance_with"
+    describe "#splits_with"
+  end
 end
