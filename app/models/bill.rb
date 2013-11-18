@@ -47,7 +47,11 @@ class Bill < ActiveRecord::Base
       amount: balance
     })
     
-    bill.save!
+    if bill.save!
+      return bill
+    else
+      return false
+    end
   end
 
   def decimal_total
