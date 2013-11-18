@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :currency do
-    code "MyString"
-    full_name "MyString"
-    rate 1.5
+    code "MSP"
+    full_name "Martian Space Peso"
+    rate 124.151059
   end
 end
