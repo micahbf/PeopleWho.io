@@ -14,7 +14,12 @@ describe Bill do
     end
 
     it "must have a total amount" do
-      bill.total = bill
+      bill.total = nil
+      expect(bill).not_to be_valid
+    end
+
+    it "total amount must be an integer" do
+      bill.total = "abcd"
       expect(bill).not_to be_valid
     end
 
@@ -27,6 +32,17 @@ describe Bill do
         debtor_id: 2
       }])
 
+      expect(bill).not_to be_valid
+    end
+
+    it "must have a description when not settling" do
+      bill.description = nil
+      expect(bill).not_to be_valid
+    end
+
+    it "does not need a description when settling" do
+      bill.settling = true
+      bill.description = nil
       expect(bill).not_to be_valid
     end
   end
