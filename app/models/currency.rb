@@ -3,6 +3,9 @@ require 'currency_index'
 class Currency < ActiveRecord::Base
   attr_accessible :code, :full_name, :rate
 
+  validates :code, :full_name, :rate, presence: true
+  validates :rate, numericality: true
+
   def self.update_all
     @@currency_index ||= CurrencyIndex.new
     rates = @@currency_index.currency_rates
