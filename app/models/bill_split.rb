@@ -55,6 +55,7 @@ class BillSplit < ActiveRecord::Base
   private
 
   def debtor_cant_be_same_as_bill_owner
+    return if bill.nil?
     if (debtor_id == bill.owner_id)
       errors[:debtor] << "can't be the same as bill owner"
     end
