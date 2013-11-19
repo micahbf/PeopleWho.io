@@ -101,7 +101,16 @@ describe User do
       end
     end
 
-    describe "#users_with_outstanding_balance"
+    describe "#users_with_outstanding_balance" do
+      it "should return a hash" do
+        expect(user.users_with_outstanding_balance).to be_a(Hash)
+      end
+
+      it "should have User objects as keys" do
+        expect(user.users_with_outstanding_balance.keys.first).to be_a(User)
+      end
+    end
+
     describe "#balance_with"
     describe "#splits_with"
   end
