@@ -5,5 +5,6 @@ FactoryGirl.define do
     amount 5000
 
     association :debtor, factory: :user
+    association :bill
   end
 end
