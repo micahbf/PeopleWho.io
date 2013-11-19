@@ -67,6 +67,7 @@ class Bill < ActiveRecord::Base
   end
 
   def bill_split_sum
+    return 0 if bill_splits.empty?
     bill_splits.map { |bs| bs.amount }.reduce(:+)
   end
 
