@@ -47,6 +47,35 @@ describe Bill do
     end
   end
 
+  describe "Instance methods" do
+    subject(:bill) { FactoryGirl.build(:bill) }
+
+    describe "#decimal_total" do
+      it "returns the total as a formatted string" do
+        expect(bill.decimal_total).to eq "100.00"
+      end
+    end
+
+    describe "#decimal_total=" do
+      context "given a string" do
+        it "takes a whole number and sets the total correctly" do
+          bill.decimal_total = "2924"
+          expect(bill.total).to eq 292400
+        end
+
+        it "takes a decimal total and sets the total correctly" do
+          bill.decimal_total = "424.21"
+          expect(bill.total).to eq 42421
+        end
+
+        it "drops decimals past the second position" do
+          bill.decimal_total = "4.12415"
+          expect(bill.total).to eq 412
+        end
+      end
+    end
+  end
+
   describe "Settling" do
     context "between users with an outstanding balance" do
       let(:owed_user) { FactoryGirl.create(:user) }
