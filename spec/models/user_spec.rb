@@ -111,7 +111,16 @@ describe User do
       end
     end
 
-    describe "#balance_with"
+    describe "#balance_with" do
+      it "should return postive numbers for people who owe money" do
+        expect(user.balance_with(owes_money)).to be > 0
+      end
+
+      it "should return negative numbers for people who are owed money" do
+        expect(user.balance_with(is_owed_money)).to be < 0
+      end
+    end
+    
     describe "#splits_with"
   end
 end
