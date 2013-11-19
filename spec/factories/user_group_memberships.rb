@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :user_group_membership do
-    user_id 1
-    group_id 1
+    association :user
+    association :group, factory: :user_group
   end
 end
