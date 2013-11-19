@@ -85,6 +85,17 @@ describe Bill do
         expect(bill.bill_split_sum).to eq 6000
       end
     end
+
+    describe "#split_remainder" do
+      it "returns the bill total if there are no bill splits" do
+        expect(bill.split_remainder).to eq 10000
+      end
+
+      it "returns the bill total minus the sum of split amounts" do
+        2.times { FactoryGirl.create(:bill_split, bill: bill, amount: 3000) }
+        expect(bill.split_remainder).to eq 4000        
+      end
+    end
   end
 
   describe "Settling" do
