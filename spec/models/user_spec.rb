@@ -120,7 +120,19 @@ describe User do
         expect(user.balance_with(is_owed_money)).to be < 0
       end
     end
-    
-    describe "#splits_with"
+
+    describe "#splits_with" do
+      it "should return an array" do
+        expect(user.splits_with(is_owed_money)).to be_an(Array)
+      end
+
+      it "should return bill splits with others as the debtor" do
+        expect(user.splits_with(owes_money)).to have(1).item
+      end
+
+      it "should return bill splits with the user as the debtor" do
+        expect(user.splits_with(is_owed_money)).to have(1).item
+      end
+    end
   end
 end
