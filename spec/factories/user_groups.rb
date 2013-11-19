@@ -2,6 +2,6 @@
 
 FactoryGirl.define do
   factory :user_group do
-    name "MyString"
+    name "Group o People"
   end
 end
