@@ -96,6 +96,17 @@ describe Bill do
         expect(bill.split_remainder).to eq 4000        
       end
     end
+
+    describe "#in_group?" do
+      it "returns false if the bill is not assigned to a group" do
+        expect(bill.in_group?).to eq false
+      end
+
+      it "returns true if the bill is assigned to a group" do
+        bill.group_id = 1
+        expect(bill.in_group?).to eq true
+      end
+    end
   end
 
   describe "Settling" do
