@@ -10,6 +10,7 @@ PeopleWho.io is a web app for splitting bills with friends by [Micah Buckley-Far
 - Easily see who you owe and who owes you
 - Create friend groups to split bills with, such as a roommates group for house expenses
 - Enter bills in any currency and have them automatically converted based on current exchange rates
+- Complete unit test coverage on models
 
 ## Technologies
 
