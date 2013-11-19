@@ -95,5 +95,28 @@ describe BillSplit do
         end
       end
     end
+
+    describe "#debtor_email=" do
+      let(:user) { FactoryGirl.create(:user) }
+      before { bill_split.debtor_id = nil }
+
+      context "given an existing user email" do
+        it "sets the debtor_id to that user's id" do
+          bill_split.debtor_email = user.email
+          expect(bill_split.debtor_id).to eq user.id
+        end
+      end
+
+      context "given a non-existant user email" do
+        it "creates a stub user" do
+          expect{bill_split.debtor_email = "abc@def.com"}.to change{User.count}.by(1)
+        end
+
+        it "sets the debtor_id to the new user's id" do
+          bill_split.debtor_email = "abc@xyz.com"
+          expect(bill_split.debtor_id).to eq User.last.id
+        end
+      end
+    end
   end
 end
